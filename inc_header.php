@@ -1,0 +1,95 @@
+<?php
+//보안부분(세션등록, 체크할내용, GET, POST)
+session_start();
+$ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
+$ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+$ses_userid = (isset($_SESSION['ses_userid']) && $_SESSION['ses_userid'] != '') ? $_SESSION['ses_userid'] : '';
+
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title><?= (isset($title) && $title != '') ? $title : '홈홈홈' ?></title>
+  <!-- 부트스트랩 css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 부트스트랩 js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/6a2bc27371.js" crossorigin="anonymous"></script>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/css/styles.css?v=<?= date('Ymdhis') ?>">
+  <!-- 외부스크립트 -->
+  <?php
+  if (isset($js_array)) {
+    foreach ($js_array as $value) {
+      print "<script src='http://" . $_SERVER['HTTP_HOST'] . "/php_treefare/$value?v=" . date('Ymdhis') . "' defer></script>" . PHP_EOL;
+    }
+  }
+  ?>
+</head>
+
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: black;">
+    <div class="container">
+      <a class="navbar-brand" href="#page-top"><img src="./images/person.jpg" alt="..." /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars ms-1"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+          <?php if (isset($ses_id) && $ses_id != '') { ?>
+            <!-- 로그인상태 -->
+            <li class="nav-item"><a href="#" class="nav-link"><?= $ses_name  . "님" ?></a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>">Home</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/image_board/board_list.php' ?>" class="nav-link <?= ($menu_code == 'board') ? 'active' : '' ?>">게시판</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/member_modify_form.php' ?>" class="nav-link <?= ($menu_code == 'member') ? 'active' : '' ?>">회원수정</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pg/logout.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그아웃</a></li>
+          <?php  } else { ?>
+
+            <!-- 비 로그인상태 -->
+            <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == 'intro') ? 'active' : '' ?>">사이트소개</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/view/review_list.php' ?>" class="nav-link <?= ($menu_code == 'review') ? 'active' : '' ?>">게시판2</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/image_board/board_list.php' ?>" class="nav-link <?= ($menu_code == 'board') ? 'active' : '' ?>">게시판</a></li>
+
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/stipulation.php' ?>" class="nav-link <?= ($menu_code == 'member') ? 'active' : '' ?>">회원가입</a></li>
+            <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/login/login_form.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그인</a></li>
+           
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">자주 묻는 질문</a></li>
+                <li><a class="dropdown-item" href="#">공지사항</a></li>
+                <li><a class="dropdown-item" href="#">1:1 문의</a></li>
+              </ul>
+            </div>
+
+
+          <?php  } ?>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Masthead-->
+  <header class="masthead" style="background-color: gray;">
+    <div class="container">
+      <div class="masthead-subheading">Welcome To Our Studio!</div>
+      <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
+      <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+    </div>
+  </header>
