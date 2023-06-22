@@ -1,6 +1,11 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
+$ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
+$user_id = $ses_id;
+$ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
+$user_name = $ses_name;
+
 $imageboard = new ImageBoard($conn);
 session_start();
 if (isset($_SESSION["ses_id"])) $userid = $_SESSION["ses_id"];

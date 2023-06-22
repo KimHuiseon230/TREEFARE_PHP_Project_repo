@@ -69,7 +69,11 @@ if (isset($_SESSION['ses_id'])) {
     </div>
     <!-- 푸터부분 시작 -->
     <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php";
+    $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
+    $user_id = $ses_id;
+    $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
+    $user_name = $ses_name;
     ?>
     <script>
         $(document).ready(function() {

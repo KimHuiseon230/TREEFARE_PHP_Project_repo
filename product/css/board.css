@@ -14,3 +14,20 @@
 #board_box .buttons li { display: inline; }
 #board_box .buttons button { padding: 5px 10px; cursor: pointer; }
 #board_box .buttons form { display: inline; }
+/* 게시판 내용보기(board_view.php) */
+#board_box { width: 1000px; margin: 0 auto; }
+#board_box .title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+li{
+    list-style :none;
+}
+#view_content li:nth-child(1) {	padding: 15px; border-bottom: solid 1px #aaaaaa; }
+#view_content .col2 { float: right; }
+#view_content li:nth-child(2) {	padding: 15px 15px 15px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(3) {	padding: 15px 15px 15px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(4) {	padding: 15px 15px 15px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(5) {	padding: 15px 15px 15px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(6) {	padding: 15px 15px 15px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
+#view_content{
+    padding:  0;
+}

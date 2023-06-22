@@ -3,35 +3,23 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
 $product = new Product($conn);
 session_start();
-if (isset($_SESSION["ses_id"])) $userid = $_SESSION["ses_id"];
-if (isset($_SESSION["ses_name"])) $username = $_SESSION["ses_name"];
+if (isset($_SESSION["seid"])) $userid = $_SESSION["seid"];
+if (isset($_SESSION["sename"])) $username = $_SESSION["sename"];
 if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $num = $_POST["num"];
     $page = $_POST["page"];
-
     $product->find_of_num($num);
-    $writer = $row["id"];
 
-    if (!isset($userid) || $userid !== $writer) {
-        die("
-        <script>
-        alert('수정권한이 없습니다.');
-        history.go(-1)
-        </script>
-    ");
-    }
-    $copied_name = $row["file_copied"];
-
-
-    if ($copied_name) {
-        $file_path = "./data/" . $copied_name;
-        unlink($file_path);
-    }
+    // $copied_name = $row["file_copied"];
+    // if ($copied_name) {
+    //     $file_path = "./data/" . $copied_name;
+    //     // unlink($file_path);
+    // }
 
     $product->del_of_num($num);
     echo "
 	     <script>
-	         location.href = 'board_list.php?page=$page';
+	         location.href = 'product_list.php?page=$page';
 	     </script>
 	   ";
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "insert") {
@@ -47,6 +35,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         exit;
     }
     $name = $_POST["name"];
+    $kind = $_POST["kind"];
     $price = $_POST["price"];
     $sale = $_POST["sale"];
     $content = $_POST["content"];
@@ -116,14 +105,14 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     // 포인트 부여하기
     $point_up = 100;
 
-    // $sql = "select point from `member` where id='$ses_id'";
+    // $sql = "select point from `member` where id='$seid'";
     // $stmt = $conn->prepare($sql);
     // $row = $stmt->fetch();
     // // $result = mysqli_query($con, $sql);
     // // $row = mysqli_fetch_array($result);
     // $new_point = $row["point"] + $point_up;
 
-    // $sql = "update `member` set point=$new_point where id='$ses_id'";
+    // $sql = "update `member` set point=$new_point where id='$seid'";
     // $stmt = $conn->prepare($sql);
     // $stmt->execute();
 
@@ -133,11 +122,14 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 	   </script>
 	";
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "modify") {
+
     $num = $_POST["num"];
     $page = $_POST["page"];
-
-    $subject = $_POST["subject"];
+    $name = $_POST["name"];
+    $price = $_POST["price"];
+    $sale = $_POST["sale"];
     $content = $_POST["content"];
+    $regist_day = date("Y-m-d (H:i)");  // 현재의 '년-월-일-시-분'을 저장
     $file_delete = (isset($_POST["file_delete"])) ? $_POST["file_delete"] : 'no';
 
     $row = $product->find_of_num2($num);
@@ -207,13 +199,15 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     }
     // 연관배열
     $arr = [
-
         'num' => $num,
-        'subject' => $subject,
+        'name' => $name,
+        'price' => $price,
+        'sale' => $sale,
         'content' => $content,
         'upfile_name' => $upfile_name,
         'upfile_type' => $upfile_type,
         'copied_file_name' => $copied_file_name,
+        'regist_day' => $regist_day
     ];
 
     $product->update_of_num($arr);
@@ -229,7 +223,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     // $result = $stmt->execute();
     echo "
 	      <script>
-	          location.href = 'board_list.php?page=$page';
+	          location.href = 'product_list.php?page=$page';
 	      </script>
 	  ";
 } else if (isset($_POST["mode"]) && $_POST["mode"] == "insert_ripple") {
@@ -239,7 +233,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     }
     //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
 
-    $userid = (isset($_SESSION['ses_userid']) && $_SESSION['ses_userid'] != '') ? $_SESSION['ses_userid'] : '';
+    $userid = (isset($_SESSION['seuserid']) && $_SESSION['seuserid'] != '') ? $_SESSION['seuserid'] : '';
 
     $q_userid =  $userid;
 

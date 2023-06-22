@@ -130,7 +130,7 @@ function create_table($conn, $table_name)
         `file_copied` varchar(255) DEFAULT NULL,
         `regist_day` char(20) DEFAULT NULL,
         PRIMARY KEY (`num`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+      ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
         break;
 
       case 'qna':

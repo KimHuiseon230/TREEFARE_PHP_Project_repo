@@ -2,15 +2,15 @@
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/ilhase/common/lib/db_connector.php";
 
-  if(isset($_SESSION['usermember_type'])){
-    $member_type = $_SESSION['usermember_type'];
-  } else {
-    // 로그인하지 않은 경우
-    echo "<script>
-      alert('잘못된 접근입니다.');
-      history.go(-1);
-    </script>";
-  }
+  // if(isset($_SESSION['usermember_type'])){
+  //   $member_type = $_SESSION['usermember_type'];
+  // } else {
+  //   // 로그인하지 않은 경우
+  //   echo "<script>
+  //     alert('잘못된 접근입니다.');
+  //     history.go(-1);
+  //   </script>";
+  // }
 
   // 수정, 등록 구분
   $mode="";

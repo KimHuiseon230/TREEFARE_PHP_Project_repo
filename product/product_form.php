@@ -1,6 +1,6 @@
 <?php
 // 공통적으로 처리하는 부분
-$js_array = ['/product/js/board_form.js'];
+$jarray = ['/product/js/board_form.js'];
 $title = "상품";
 $menu_code = "product";
 ?>
@@ -26,7 +26,10 @@ $menu_code = "product";
 	<section>
 		<?php
 		$mode = isset($_POST["mode"]) ? $_POST["mode"] : "insert";
-		$subject = "";
+		$name = "";
+		$kind = "";
+		$price = "";
+		$sale = "";
 		$content = "";
 		$file_name = "";
 
@@ -36,13 +39,14 @@ $menu_code = "product";
 			$rows = $product->find_of_num($num);
 
 			// 비로그인 이거나 관리자가 아닌경우
-			if ($ses_level != 1) {
+			if ($selevel != 1) {
 				"alert_back('수정권한이 없습니다.')";
 				exit;
 			}
 			foreach ($rows as $row) {
 				$num = $row["num"];
 				$name = $row["name"];
+				$kind = $row["kind"];
 				$price = $row["price"];
 				$sale = $row["sale"];
 				$content = $row["content"];
@@ -72,26 +76,30 @@ $menu_code = "product";
 				<ul id="board_form">
 					<li>
 						<span class="col1">상품명 : </span>
-						<span class="col2"><input name="name" type="text"></span>
+						<span class="col2"><input name="name" type="text" value="<?= $name ?>"></span>
+					</li>
+					<li>
+						<span class="col1">종류 : </span>
+						<span class="col2"><input name="kind" type="text" value="<?= $kind ?>"></span>
 					</li>
 					<li>
 						<span class="col1">원가 : </span>
-						<span class="col2"><input name="price" type="text"></span>
+						<span class="col2"><input name="price" type="text" value="<?= $price ?>"></span>
 					</li>
 					<li>
 						<span class="col1">세일가격 : </span>
-						<span class="col2"><input name="sale" type="text"></span>
+						<span class="col2"><input name="sale" type="text" value="<?= $sale ?>"></span>
 					</li>
 					<li>
 						<span class="col1">설명 : </span>
-						<span class="col2"><input name="content" type="text"></span>
+						<span class="col2"><input name="content" type="text" value="<?= $content ?>"></span>
 					</li>
 					<li>
 						<span class="col1"> 첨부 파일 : </span>
 						<span class="col2"><input type="file" name="upfile">
 							<?php if ($mode === "modify") : ?>
 								<input type="checkbox" value="yes" name="file_delete">&nbsp;파일 삭제하기
-								<br>현재 파일 : <?= $file_name ?>
+								<br>현재 파일 : <?= $file_copied_0 ?>
 							<?php endif; ?>
 						</span>
 					</li>

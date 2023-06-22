@@ -40,7 +40,7 @@ class ImageBoard
     }
     // num insert
     public function insert_of_num($arr)
-    {
+    {    
         $sql = "insert into `image_board`(id, name, subject, content, regist_day, hit,  file_name, file_type, file_copied) ";
         $sql .= "values(:userid, :username, :subject, :content, :regist_day, 0, ";
         $sql .= ":upfile_name, :upfile_type, :copied_file_name)";
@@ -114,8 +114,6 @@ class ImageBoard
     public function find_test($q_userid)
     {
  
-     
-        
         $sql = "select * from `member` where id =:q_userid";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':q_userid', $q_userid);

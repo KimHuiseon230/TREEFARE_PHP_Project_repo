@@ -47,7 +47,8 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-          <?php if (isset($ses_id) && $ses_id != '') { ?>
+
+          <?php if (isset($ses_id) && $ses_id != '' && $ses_level != 10) { ?>
             <!-- 로그인상태 -->
             <li class="nav-item"><a href="#" class="nav-link"><?= $ses_name  . "님" ?></a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>">Home</a></li>
@@ -55,8 +56,8 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/image_board/board_list.php' ?>" class="nav-link <?= ($menu_code == 'board') ? 'active' : '' ?>">게시판</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/member_modify_form.php' ?>" class="nav-link <?= ($menu_code == 'member') ? 'active' : '' ?>">회원수정</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pg/logout.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그아웃</a></li>
-            <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown" style="text-decoration-line: none;">
+              <a href=" #" role="text" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown link
               </a>
 
@@ -66,36 +67,36 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
                 <li><a class="dropdown-item" href="#">공지사항</a></li>
               </ul>
             </div>
-          <?php  } else { ?>
+            <!-- 관리자로 로그인 상태 -->
+          <?php  } else if (isset($ses_level) && $ses_level != '' && $ses_level == 10) { ?>
+            <li class="nav-item"><a href="#" class="nav-link"><?= $ses_name  . "님" ?></a></li>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </button>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_member/admin/admin_member.php' ?>" class="nav-link <?= ($menu_code == 'admin_member') ? 'active' : '' ?>">회원관리</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == '') ? 'active' : '' ?>">게시판관리</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == '') ? 'active' : '' ?>">공지사항관리</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == '') ? 'active' : '' ?>">상품관리</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == '') ? 'active' : '' ?>">고객센터</a></li>
+                  <li class="nav-item"><a class="dropdown-item" href="http://<?= $_SERVER['HTTP_HOST']; ?>/ilhase/cs/qna_list.php">문의 메세지<span class="notification"> •</span></a></li>
+                  <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pg/logout.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그아웃</a></li>
+                  <li class="nav-item dropdown" id="nav_user">
+                </ul>
+              </div>
+            </li>
 
+          <?php  } else { ?>
             <!-- 비 로그인상태 -->
             <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == 'intro') ? 'active' : '' ?>">사이트소개</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/product_list.php' ?>" class="nav-link <?= ($menu_code == 'intro') ? 'active' : '' ?>">상품</a></li>
+            <li class="nav-item"><a href="#" class="nav-link <?= ($menu_code == 'intro') ? 'active' : '' ?>">사이트소개</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/view/review_list.php' ?>" class="nav-link <?= ($menu_code == 'review') ? 'active' : '' ?>">게시판2</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/image_board/board_list.php' ?>" class="nav-link <?= ($menu_code == 'board') ? 'active' : '' ?>">게시판</a></li>
 
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/stipulation.php' ?>" class="nav-link <?= ($menu_code == 'member') ? 'active' : '' ?>">회원가입</a></li>
             <li class="nav-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/login/login_form.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그인</a></li>
-
-            <!-- <div class="dropdown" style="text-decoration-line: none;">
-              <a href=" #" role="text" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-              </a> -->
-
-            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/notice/faq.php' ?>">자주 묻는 질문</a></li>
-              <li><a class="dropdown-item" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/notice/qna.php' ?>"> 1:1 문의</a></li>
-              <li><a class="dropdown-item" href="#">공지사항</a></li>
-            </ul> -->
-            <!-- </div> -->
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/notice/faq.php' ?>">자주 묻는 질문</a></li>
-              <li><a class="dropdown-item" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/notice/qna.php' ?>"> 1:1 문의</a></li>
-              <li><a class="dropdown-item" href="#">공지사항</a></li>/li>
-            </ul>
-
           <?php  } ?>
         </ul>
 
@@ -106,5 +107,5 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
   <header class="masthead">
     <div class="container">
       <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/data/interior9.jpg' ?>" alt="">
-    </div>>
+    </div>
   </header>

@@ -13,15 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     if (!document.board_form.sale.value) {
-      alert("원가를 입력하세요!");
+      alert("세일가를 입력하세요!");
       document.board_form.sale.focus();
       return;
     }
     if (!document.board_form.content.value) {
-      alert("원가를 입력하세요!");
+      alert("상품설명을 입력하세요!");
       document.board_form.content.focus();
       return;
     }
     document.board_form.submit();
+  });
+
+  const kind_1 = document.querySelector("#kind_1");
+  kind_1.addEventListener("click", ()=>{
+    alert("dddddddddd");
   });
 });
