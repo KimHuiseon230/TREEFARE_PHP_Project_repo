@@ -114,8 +114,41 @@ function create_table($conn, $table_name)
         `rating` INT(1),
         `content` TEXT, 
         PRIMARY KEY (`id`)
-);";
+      );";
         break;
+
+      case 'product':
+        $sql = "CREATE TABLE `product` (
+        `num` int(11) NOT NULL AUTO_INCREMENT,
+        `name` char(45) NOT NULL,
+        `kind` char(1) NOT NULL,
+        `price` char(15) NOT NULL,
+        `sale` char(15) NOT NULL,
+        `content` varchar(255) NOT NULL,
+        `file_name` char(40) NOT NULL,
+        `file_type` varchar(255) DEFAULT NULL,
+        `file_copied` varchar(255) DEFAULT NULL,
+        `regist_day` char(20) DEFAULT NULL,
+        PRIMARY KEY (`num`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+        break;
+
+      case 'qna':
+        $sql = "CREATE TABLE `qna` (
+              `num` int(11) NOT NULL AUTO_INCREMENT,
+              `group_num` int(10) unsigned NOT NULL,
+              `depth` int(10) unsigned NOT NULL,
+              `order` int(10) unsigned NOT NULL,
+              `id` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+              `name` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+              `subject` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+              `content` text COLLATE utf8mb4_general_ci NOT NULL,
+              `hit` int(10) unsigned NOT NULL DEFAULT '0',
+              `regist_date` char(20) COLLATE utf8mb4_general_ci NOT NULL,
+              PRIMARY KEY (`num`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        break;
+
       default:
         $sql = "";
         print "<script>

@@ -1,0 +1,114 @@
+/* 카테고리 CSS  */
+.wrap {
+   width: 1200px;
+  /* background-color:#ddd; */
+  margin: 0 auto;
+}
+
+.title {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+#job_box {
+  display: flex;
+  flex-direction: row;
+  /* 기본값 */
+  justify-content: space-between;
+}
+
+.col_box {
+  width: 11.5%;
+  height: 130px;
+  position: relative;
+}
+
+.col_box button {
+  display: block;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+.col_box img {
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  max-width: 100%;
+  height: 100%;
+  max-height: 130px;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.col_box span {
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  font-size: 0.8em;
+  width: 100%;
+  padding: 1em 0;
+  opacity: 0.8;
+  background-color: #000;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+#sh_text {
+  padding-top: 3rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #333;
+}
+
+
+/* 물건 리스트 CSS  */
+.products h2{
+  font-size: 30px;
+  color: #545454;
+  font-weight: bold;
+  margin-top: 70px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.product-list{
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product{
+  width: 370px;
+  text-align: center;
+  display: block;
+  color: #545454;
+  text-decoration: none;
+  float: left;
+  margin-left:15px;
+  margin-right: 15px;
+  margin-bottom: 80px;
+  
+}
+.product-name{
+  margin-top: 20px;
+  margin-bottom: 4px;
+  
+}
+.clearfix{
+  clear: both;
+}
+.product-price{
+  text-decoration:line-through ;
+}
+
+.buttons { text-align: right; margin: 20px 0 40px 0; }
+.buttons li { display: inline; }
+.buttons button { padding: 5px 10px; cursor: pointer; }
+
+.hover\:grow {
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.hover\:grow:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,16 @@
+/* 게시판 글쓰기(board_form.php) */
+#board_box { position: relative; width: 800px; margin: 0 auto; }
+#board_box h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px;  word-break: break-all;}
+#board_form span { display: inline-block; }
+#board_form .col1 { width: 150px; }
+#board_form ul {	float: left;}
+#board_form li {	padding: 12px; border-bottom: solid 1px #dddddd; }
+#board_form input:not([type=checkbox]):not([type=file]){ width: 500px; height: 25px; }
+#board_form textarea { width: 500px;	height: 150px; }
+#board_form #text_area {	position: relative;	height: 158px; }
+#board_form #text_area .col1 { position: absolute; top: 10px; }
+#board_form #text_area .col2 { position: absolute; left: 166px; }
+#board_box .buttons { text-align: right; margin: 20px 0 40px 0; }
+#board_box .buttons li { display: inline; }
+#board_box .buttons button { padding: 5px 10px; cursor: pointer; }
+#board_box .buttons form { display: inline; }
