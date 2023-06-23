@@ -28,7 +28,11 @@ if (isset($_SESSION['ses_id'])) {
 <body>
     <header>
         <!-- //헤더부분 시작 -->
-        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
+        <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice.php";
+        create_table($conn, "qna");
         ?>
     </header>
 
@@ -67,18 +71,16 @@ if (isset($_SESSION['ses_id'])) {
 
         </div>
     </div>
-    <!-- 푸터부분 시작 -->
     <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php";
+
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-    $user_id = $ses_id;
     $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
-    $user_name = $ses_name;
     ?>
+    <div class="past_qna"></div>
     <script>
         $(document).ready(function() {
             $.post('dml_qna.php?mode=select_by_user', {
-                user_id: '<?= $user_id ?>'
+                ses_id: '<?= $ses_id ?>'
             }, function(data) {
                 console.log(data, 'test');
                 if (data) {
@@ -99,7 +101,7 @@ if (isset($_SESSION['ses_id'])) {
             }
         });
     </script>
-
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
 </body>
 
 </html>

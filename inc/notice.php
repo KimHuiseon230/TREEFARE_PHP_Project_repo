@@ -49,9 +49,8 @@ class Notic
   function insert_question()
   {
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-    $user_id = $ses_id;
     $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
-    $user_name = $ses_name;
+
 
     global $conn, $user_id, $user_name;
     $subject = "1:1 문의합니다.";
@@ -59,10 +58,11 @@ class Notic
     $regist_date = date("Y-m-d (H:i)");
 
     // prepare statement를 이용하여 쿼리 생성 및 실행
-    $sql ="INSERT INTO `qna` (`num`, `group_num`, `depth`, `order`, `id`, `name`, `subject`, `content`, `hit`, `regist_date`) VALUES (NULL, 0, 0, 0, :user_id, :user_name, :subject, :content, 0, :regist_date);";
+    $sql = "INSERT INTO `qna` (`group_num`, `depth`, `order`, `id`, `name`, `subject`, `content`, `hit`, `regist_date`) 
+    VALUES (0, 0, 0, :user_id, :user_name, :subject, :content, 0, :regist_date);";
     $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':user_id', $user_id);
-    $stmt->bindValue(':user_name', $user_name);
+    $stmt->bindValue(':user_id', $ses_id);
+    $stmt->bindValue(':user_name', $ses_name);
     $stmt->bindValue(':subject', $subject);
     $stmt->bindValue(':content', $content);
     $stmt->bindValue(':regist_date', $regist_date);
@@ -100,42 +100,43 @@ class Notic
 
   function select_by_user()
   {
-    
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-    $user_id = $ses_id;
     $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
-    $user_name = $ses_name;
 
-    global $conn, $user_id, $user_name;
-    $sql = "select * from `qna` where `group_num` in (select `group_num` from `qna` where `id`=:user_id)";
+
+    global $conn, $ses_id, $ses_name;
+
+    $sql = "SELECT * FROM `qna` WHERE `group_num` IN (SELECT `group_num` FROM `qna` WHERE `id`=:user_id)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id);
-    $result = $stmt->execute();
+    $stmt->bindParam(':user_id', $ses_id);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     if (!$result) {
       die('select_by_user error: ' . $conn->errorInfo());
     }
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    foreach ($result as $row) {
       $num = $row['num'];
       $hit = $row['hit'];
-      $content = str_replace(" ", "&nbsp;", $row['content']);
-      $content = str_replace("\n", "<br>", $row['content']);
+      $content = str_replace([" ", "\n"], ["&nbsp;", "<br>"], $row['content']);
 
       if ($row['depth'] === '0') {
         // 질문글인 경우
         echo '
-                  <div class="question_preview">
-                      <a href="qna_view.php?num=' . $num . '&hit=' . $hit . '"><span class="message">' . $content . '</span></a>
-                      <span class="date">' . $row['regist_date'] . '</span>
-                  </div>';
+            <div class="question_preview">
+                <a href="qna_view.php?num=' . $num . '&hit=' . $hit . '"><span class="message">' . $content . '</span></a>
+                <span class="date">' . $row['regist_date'] . '</span>
+            </div>';
       } else {
         // 답변글인 경우
         echo '
-                  <div class="answer_preview">
-                      <span class="date">' . $row['regist_date'] . '</span>
-                      <span class="message">' . $content . '</span>
-                  </div>';
+            <div class="answer_preview">
+                <span class="date">' . $row['regist_date'] . '</span>
+                <span class="message">' . $content . '</span>
+            </div>';
       }
+ 
     }
   }
 }

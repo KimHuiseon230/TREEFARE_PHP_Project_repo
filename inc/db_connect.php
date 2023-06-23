@@ -3,7 +3,7 @@ date_default_timezone_set("Asia/Seoul");
 $serverName_db = 'localhost';
 $dbUser_db = 'root';
 $password_db = '123456';
-$dbName_db = 'memberStudy';
+$dbName_db = 'treefare';
 
 try {
   $conn = new PDO("mysql:host={$serverName_db};dbname={$dbName_db}", $dbUser_db, $password_db);

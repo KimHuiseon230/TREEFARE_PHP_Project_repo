@@ -9,7 +9,7 @@
 
 <body>
 	<header>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 		?>
 	</header>
 	<section>
@@ -123,7 +123,7 @@
 								<li id="mdi_del">
 									<span><?= $ripple_content ?></span>
 									<?php
-									if ($_SESSION['userid'] == "admin" || $_SESSION['userid'] == $ripple_id) {
+									if ($_SESSION['ses_id'] == "admin" || $_SESSION['ses_id'] == $ripple_id) {
 										echo '
                                                <form style="display:inline" action="dmi_board.php" method="post">
 													    <input type="hidden" name="page" value="' . $page . '">
@@ -186,7 +186,7 @@
 			</div> <!-- board_box -->
 	</section>
 	<footer>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
 </body>
 
 </html>

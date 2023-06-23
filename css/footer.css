@@ -1,0 +1,75 @@
+
+/* 푸터 전체 스타일 */
+footer {
+  background-color: #f5f5f5;
+  padding: 5px 0;
+}
+
+/* 푸터 컨테이너 스타일 */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 푸터 컬럼 스타일 */
+.footer-column {
+  width: 30%;
+  margin: 10px 0;
+}
+
+.footer-column h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-column p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #888;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 5px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #888;
+  font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+  color: #555;
+}
+
+/* 푸터 하단 스타일 */
+.footer-bottom {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+}
+
+.social-media-icons a {
+  color: #fff;
+  margin-left: 5px;
+  font-size: 16px;
+}
+
+.social-media-icons a:hover {
+  color: #aaa;
+}

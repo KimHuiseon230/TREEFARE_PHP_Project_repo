@@ -1,7 +1,8 @@
 <?php
+session_start();
 // 회원정보 가져오기(DB연결, Member Class 로딩)
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice.php";
 $notic = new Notic($conn);
 
   $mode = $_GET['mode'];
@@ -9,7 +10,7 @@ $notic = new Notic($conn);
 
   switch ($mode){
     case 'insert':
-      insert_notice();
+      // $notic->insert_notice();
       break;
 
     case 'update':

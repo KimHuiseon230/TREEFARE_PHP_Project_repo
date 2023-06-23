@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
         create_table($conn, "image_board");

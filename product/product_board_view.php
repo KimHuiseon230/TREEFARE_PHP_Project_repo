@@ -7,11 +7,11 @@
 
 <body>
 	<header>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 		?>
 	</header>
 	<?php
-	if (!$selevel == 1) {
+	if (!$ses_level == 10) {
 		die("<script>alert('권한이 없습니다.!');
 						history.go(-1);
 					</script>");
@@ -48,7 +48,7 @@
 
 			$content = str_replace(" ", "&nbsp;", $content);
 			$content = str_replace("\n", "<br>", $content);
-			// if ($seid !== $id) {
+			// if ($ses_id !== $id) {
 			// 	$new_hit = $hit + 1;
 			// 	$sql2 = "update image_board set hit=$new_hit where num=:num";
 			// 	$stmt2 = $conn->prepare($sql2);
@@ -125,7 +125,7 @@
 			</div> <!-- board_box -->
 	</section>
 	<footer>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
 </body>
 
 </html>

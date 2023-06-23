@@ -14,7 +14,7 @@ $title = "회원가입";
 $menu_code = "member";
 
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
 create_table($conn, "member");
@@ -26,7 +26,7 @@ create_table($conn, "member");
 <div class="container">
   <main class="w-50 p-5 border rounded-5 mx-auto">
     <h1 class="text-center">회원가입</h1>
-    <form name="input_form" method="post" action="./pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
+    <form name="input_form" method="post" action="../pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
       <input type="hidden" name="id_check" value="0">
       <input type="hidden" name="email_check" value="0">
       <input type="hidden" name="mode" value="input">
@@ -104,5 +104,5 @@ create_table($conn, "member");
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
 ?>

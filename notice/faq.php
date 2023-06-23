@@ -73,7 +73,7 @@ session_start();
 
 <body onload="init();">
   <header>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"; ?>
   </header>
 
   <div class="container">
@@ -180,7 +180,7 @@ session_start();
 
   <!-- 푸터부분 시작 -->
   <?php
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
   ?>
 
 

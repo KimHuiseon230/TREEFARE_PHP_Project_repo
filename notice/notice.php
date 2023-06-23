@@ -21,10 +21,11 @@ $total_record = 0;
 //   $sql = "SELECT * from `notice` order by num desc";
 // }
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice.php";
-include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice.php";
 create_table($conn, "notice");
+create_table($conn, "qna");
 $notic = new Notic($conn);
 $result = $notic->test();
 
@@ -68,7 +69,7 @@ $number = $total_record - $start;
       <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST']; ?>/ilhase/admin/css/plain_admin_header.css">
     <?php
     } else {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     }
     ?>
   </header>
@@ -140,7 +141,7 @@ $number = $total_record - $start;
   </div><!--end of content -->
 
   <!-- footer -->
-  <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"; ?>
+  <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
 
   <link rel="stylesheet" href="./css/notice.css">
   <script>

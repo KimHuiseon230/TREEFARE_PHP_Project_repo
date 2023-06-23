@@ -22,7 +22,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
 $member = new Member($conn);
 $memArr = $member->getInfo($ses_id);
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
 ?>
 <!-- 다음 스크립트 로딩(우편번호 찾기) -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -31,7 +31,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
 <div class="container">
   <main class="w-50 p-5 border rounded-5 mx-auto">
     <h1 class="text-center">회원수정</h1>
-    <form name="input_form" method="post" action="./pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
+    <form name="input_form" method="post" action="../pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
       <input type="hidden" name="email_check" value="0">
       <input type="hidden" name="old_email" value="<?= $memArr['email'] ?>">
       <input type="hidden" name="old_photo" value="<?= $memArr['photo'] ?>">
@@ -113,5 +113,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
 ?>

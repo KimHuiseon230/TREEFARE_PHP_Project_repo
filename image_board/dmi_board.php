@@ -1,15 +1,13 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
-$ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-$user_id = $ses_id;
-$ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
-$user_name = $ses_name;
-
-$imageboard = new ImageBoard($conn);
 session_start();
-if (isset($_SESSION["ses_id"])) $userid = $_SESSION["ses_id"];
-if (isset($_SESSION["ses_name"])) $username = $_SESSION["ses_name"];
+$ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
+$ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+$imageboard = new ImageBoard($conn);
+
+
 if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $num = $_POST["num"];
     $page = $_POST["page"];
@@ -17,7 +15,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $imageboard->find_of_num($num);
     $writer = $row["id"];
 
-    if (!isset($userid) || $userid !== $writer) {
+    if (!$ses_level==10) {
         die("
         <script>
         alert('수정권한이 없습니다.');
@@ -42,7 +40,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "insert") {
 
     //세션값확인
-    if (!$userid) {
+    if (!$ses_id) {
         echo ("
 		<script>
 		alert('게시판 글쓰기는 로그인 후 이용해 주세요!');
@@ -102,8 +100,8 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 
     // 연관배열
     $arr = [
-        'userid' => $userid,
-        'username' => $username,
+        'ses_id' => $ses_id,
+        'ses_name' => $ses_name,
         'subject' => $subject,
         'content' => $content,
         'regist_day' => $regist_day,
@@ -114,7 +112,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $imageboard->insert_of_num($arr);
 
     // $sql = "insert into image_board (id, name, subject, content, regist_day, hit,  file_name, file_type, file_copied) ";
-    // $sql .= "values('$userid', '$username', '$subject', '$content', '$regist_day', 0, ";
+    // $sql .= "values('$ses_id', '$ses_name', '$subject', '$content', '$regist_day', 0, ";
     // $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name')";
     // $stmt = $conn->prepare($sql); // $sql 에 저장된 명령 실행
     // $stmt->execute();
@@ -245,13 +243,13 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     }
     //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
    
-    $userid = (isset($_SESSION['ses_userid']) && $_SESSION['ses_userid'] != '') ? $_SESSION['ses_userid'] : '';
+    $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
 
-    $q_userid =  $userid;
+    $q_ses_id =  $ses_id;
    
-    $sql = "select * from `member` where id =:q_userid";
+    $sql = "select * from `member` where id =:q_ses_id";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':q_userid', $q_userid);
+    $stmt->bindParam(':q_ses_id', $q_ses_id);
     $row = $stmt->fetch();
     $result = $stmt->execute();
 
@@ -274,21 +272,23 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         $hit = $_POST["hit"];
         $q_usernick = isset($_SESSION['usernick']) ? HTMLSPECIALCHARS($_SESSION['usernick']) : null;
 
-        $q_username = $_SESSION['username'];
+        $q_ses_name = $_SESSION['ses_name'];
 
         $q_content = HTMLSPECIALCHARS($content);
         $q_parent = HTMLSPECIALCHARS($parent);
         $regist_day = date("Y-m-d (H:i)");
 
-        $sql = "INSERT INTO `image_board_ripple` VALUES (null,'$q_parent','$q_userid','$q_username', '$q_usernick','$q_content','$regist_day')";
-        $stmt = $conn->prepare($sql);
-        $row = $stmt->fetch();
-        $result = $stmt->execute();
+        $imageboard->insert_image_board_ripple($arr);
+        // $sql = "INSERT INTO `image_board_ripple` VALUES (null,'$q_parent','$q_ses_id','$q_ses_name', '$q_usernick','$q_content','$regist_day')";
+        // $stmt = $conn->prepare($sql);
+        // $row = $stmt->fetch();
+        // $result = $stmt->execute();
+        // if (!$result) {
+        //     die('Error: ' . mysqli_error($conn));
+        // }
 
-        if (!$result) {
-            die('Error: ' . mysqli_error($conn));
-        }
         echo "<script>location.href='./board_view.php?num=$parent&page=$page&hit=$hit';</script>";
+        
     } //end of if rowcount
 } else if (isset($_POST["mode"]) && $_POST["mode"] == "delete_ripple") {
     $page = $_POST["page"];

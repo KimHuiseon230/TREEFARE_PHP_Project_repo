@@ -1,0 +1,296 @@
+.main_content {
+  width: 100%;
+  min-width: 1280px;
+  font-family: 'S-CoreDream-3Light';
+}
+
+.main_content a {
+  text-decoration-line: none;
+}
+
+.blank {
+  height: 8px;
+}
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.center2 {
+  width: 1280px;
+}
+
+.somenu {
+  font-family: 'YUniverse-B';
+  display: flex;
+  flex-direction: column;
+  font-size: 23px;
+  margin-top: 20px;
+  margin-right: 150px;
+}
+
+.somenu li {
+  margin-top: 5px;
+}
+
+#li_somenu {
+  color: rgb(200, 200, 200);
+  font-family: 'S-CoreDream-3Light';
+  font-size: 16px;
+}
+
+#li_somenu:hover {
+  color: #5d7759;
+  font-size: 18px;
+}
+
+#title_somenu {
+  color: #2b3729;
+  font-family: 'YUniverse-B';
+}
+
+#li_somenu_first {
+  color: #2b3729;
+  font-family: 'S-CoreDream-3Light';
+  font-size: 18px;
+}
+
+.minimap {
+  margin-top: 10px;
+  font-size: 13px;
+  width: 100%;
+  min-width: 1320px;
+}
+
+.minimap ul {
+  display: flex;
+  padding-left: 160px;
+}
+
+.minimap ul li {
+  padding: 2px 5px;
+}
+
+.minimap a {
+  color: var(--normal_font);
+}
+
+.gray {
+  color: rgb(204, 204, 204);
+}
+
+.title_line {
+  height: 1px;
+  background-color: #2b3729;
+  margin: 0;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#view_shop {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 5px 30px 5px;
+  width: 400px;
+  margin: 0;
+  margin-top: 15px;
+}
+
+.title {
+  width: 300px;
+}
+
+.title span {
+  margin-left: 15px;
+}
+
+.shop_top {
+  border-bottom: 2px solid #3a4a37;
+}
+
+.shop_top p {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.red_button {
+  border: none;
+  background-color: #782f2f;
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-family: 'S-CoreDream-3Light';
+  margin-right: 20px;
+  float: right;
+}
+
+.green_button {
+  border: none;
+  background-color: #3a4a37;
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-family: 'S-CoreDream-3Light';
+  margin-right: 20px;
+  float: right;
+}
+
+.context {
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+.context img {
+  text-align: center;
+  width: 800px;
+  height: 600px;
+
+}
+
+.content {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.product {
+  display: flex;
+}
+
+.type {
+  color: #a2a2a2;
+  font-size: 16px;
+}
+
+.name {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: 600;
+  color: #2b3729;
+  margin-top: 30px;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+#ripple_title ul {
+  padding: 0;
+  margin: 5px;
+}
+
+#ripple_comment {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+#ripple_insert {
+  display: flex;
+}
+
+#ripple_textarea {
+  border: 1px solid #9d9d9d;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+#ripple_textarea textarea {
+  resize: none;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 14px;
+  font-family: 'S-CoreDream-3Light';
+  width: 700px;
+}
+
+.ripple_button {
+  border: none;
+  background-color: #3a4a37;
+  color: white;
+  font-family: 'S-CoreDream-3Light';
+  height: 73px;
+  width: 90px;
+}
+
+.ripple_delete_button {
+  border: none;
+  background-color: #782f2f;
+  color: white;
+  height: 15px;
+  width: 15px;
+  font-family: 'S-CoreDream-3Light';
+  text-align: center;
+  font-size: 5px;
+  padding: 0;
+}
+
+.ripple_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ripple_list li:nth-child(1) {
+  font-weight: 600;
+}
+
+#ripple_line {
+  margin: 2px auto;
+  margin-top: 4px;
+}
+
+#select_count {
+  border: 1px solid #2b3729;
+  margin-top: 15px;
+  font-size: 18px;
+  width: 100px;
+  height: 35px;
+}
+
+.count {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart {
+  margin-top: 50px;
+}
+
+.cart .green_button {
+  float: left;
+}
+
+form {
+  margin-left: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+.sell>strong {
+  text-decoration: line-through;
+  font-size: 15px;
+  margin-right: 10px;
+}

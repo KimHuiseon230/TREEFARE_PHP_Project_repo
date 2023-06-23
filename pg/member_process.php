@@ -62,7 +62,7 @@ switch ($mode) {
       if ($password1 != $password2) {
         die("<script>
           alert('패스워드가 맞지 않습니다');
-          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/member_input.php'
+          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/member/member_input.php'
         </script>");
       }
 
@@ -81,7 +81,7 @@ switch ($mode) {
       $member->input($arr);
 
       die("<script>
-        self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/member_success.php'
+        self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/index.php'
         </script>");
     }
   case 'login': {

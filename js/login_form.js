@@ -3,7 +3,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
   btn_login.addEventListener("click", () => {
     const form_id = document.querySelector(`#form_id`);
     if (form_id.value == "") {
-      alert("아이디를 입력해주세요");
+      alert(" 아이디를 입력해주세요");
       form_id.focus();
       return false;
     }

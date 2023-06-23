@@ -2,7 +2,7 @@
 <html lang="ko" dir="ltr">
 <?php
 // 공통적으로 처리하는 부분
-$jarray = ['/product/js/product.js'];
+$js_array = ['js/product.js'];
 $title = "상품";
 $menu_code = "product";
 ?>
@@ -14,9 +14,9 @@ $menu_code = "product";
 
 <body>
   <header>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/page_lib.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
     create_table($conn, "product");
     ?>
@@ -131,7 +131,7 @@ $menu_code = "product";
           ?>
 
             <div class="product-list">
-              <a href="product_view.php?num=<?= $num ?>&page=<?= $page ?>" class="product">
+              <a href="product_board_view.php?num=<?= $num ?>&page=<?= $page ?>" class="product">
                 <?php if (strpos($file_type_0, "image") !== false) echo "<img  class='hover:grow hover:shadow-lg' src='./data/$file_copied_0' 
                 width='$image_width' height='$image_height'><br>";
                 else echo "<img src='./data/interior3.jpg' width='$image_width' height='$image_height'><br>" ?>
@@ -165,7 +165,7 @@ $menu_code = "product";
         <ul class="buttons">
           <li>
             <?php
-            if ($selevel == 1) {
+            if ($ses_level == 10) {
             ?>
               <button class="btn btn-primary" onclick="location.href='product_form.php'">상품 추가하기</button>
             <?php
@@ -177,7 +177,7 @@ $menu_code = "product";
 
     </section>
     <footer>
-      <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
     </footer>
 </body>
 

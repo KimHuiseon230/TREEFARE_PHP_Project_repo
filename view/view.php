@@ -140,7 +140,7 @@ if ($id) {
 
 if (!$review) {
   echo "Invalid review ID or review not found.";
-} 
+}
 ?>
 <?php
 // 공통적으로 처리하는 부분
@@ -149,7 +149,7 @@ $title = "reviews";
 $menu_code = "review";
 ?>
 <!-- 헤더부분 시작 -->
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc/inc_header.php"
 ?>
 <div class="container">
   <h1>쇼핑몰 구매평 상세 페이지</h1>
@@ -186,5 +186,5 @@ $menu_code = "review";
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc/inc_footer.php"
 ?>

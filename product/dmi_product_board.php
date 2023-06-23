@@ -3,8 +3,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
 $product = new Product($conn);
 session_start();
-if (isset($_SESSION["seid"])) $userid = $_SESSION["seid"];
+if (isset($_SESSION["ses_id"])) $userid = $_SESSION["ses_id"];
 if (isset($_SESSION["sename"])) $username = $_SESSION["sename"];
+if (isset($_SESSION["ses_level"])) $ses_level = $_SESSION["ses_level"];
 if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $num = $_POST["num"];
     $page = $_POST["page"];
@@ -25,10 +26,10 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "insert") {
 
     //세션값확인
-    if (!$userid) {
+    if ($ses_level != 10) {
         echo ("
 		<script>
-		alert('게시판 글쓰기는 로그인 후 이용해 주세요!');
+		alert('글쓰기 권한이 없습니다!');
 		history.go(-1)
 		</script>    
         ");
@@ -94,6 +95,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         'copied_file_name' => $copied_file_name,
         'regist_day' => $regist_day
     ];
+
     $product->insert_of_num($arr);
 
     // $sql = "insert into image_board (id, name, subject, content, regist_day, hit,  file_name, file_type, file_copied) ";
@@ -103,24 +105,25 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     // $stmt->execute();
 
     // 포인트 부여하기
-    $point_up = 100;
+    // $point_up = 100;
 
-    // $sql = "select point from `member` where id='$seid'";
+    // $sql = "select point from `member` where id='$ses_id'";
     // $stmt = $conn->prepare($sql);
     // $row = $stmt->fetch();
     // // $result = mysqli_query($con, $sql);
     // // $row = mysqli_fetch_array($result);
     // $new_point = $row["point"] + $point_up;
 
-    // $sql = "update `member` set point=$new_point where id='$seid'";
+    // $sql = "update `member` set point=$new_point where id='$ses_id'";
     // $stmt = $conn->prepare($sql);
     // $stmt->execute();
 
-    echo "
+    die("
 	   <script>
-	    location.href = 'product_list.php';
+       alert('등록이 완료되었습니다.');
+	    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/product/product_list.php';
 	   </script>
-	";
+	");
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "modify") {
 
     $num = $_POST["num"];

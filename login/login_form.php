@@ -7,7 +7,7 @@ $title = "로그인";
 $menu_code = "login";
 
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
 ?>
 
 <!-- 메인부분 시작 -->
@@ -38,5 +38,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
 ?>

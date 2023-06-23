@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const check_input = document.querySelector("#check_input");
-  check_input.addEventListener("click", ()=>{
-
+  const btn_input = document.querySelector("#btn_input");
+  btn_input.addEventListener("click", ()=>{
     if (!document.board_form.name.value) {
       alert("상품명을 입력하세요!");
       document.board_form.name.focus();
@@ -23,10 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     document.board_form.submit();
-  });
-
-  const kind_1 = document.querySelector("#kind_1");
-  kind_1.addEventListener("click", ()=>{
-    alert("dddddddddd");
   });
 });

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $notic = new Notic($conn);
 include $_SERVER['DOCUMENT_ROOT'] . "/ilhase/common/lib/db_connector.php";
 

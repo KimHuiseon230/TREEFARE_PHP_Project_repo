@@ -14,7 +14,7 @@ $menu_code = "board";
 <body>
 	<header>
 		<?php
-		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";;
@@ -113,7 +113,7 @@ $menu_code = "board";
 	</section>
 	<!-- 푸터부분 시작 -->
 	<footer>
-		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php" ?>
+		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
 	</footer>
 </body>
 

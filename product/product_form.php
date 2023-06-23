@@ -1,6 +1,6 @@
 <?php
 // 공통적으로 처리하는 부분
-$jarray = ['/product/js/board_form.js'];
+$js_array = ['js/product_form.js'];
 $title = "상품";
 $menu_code = "product";
 ?>
@@ -9,12 +9,13 @@ $menu_code = "product";
 
 <head>
 	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/board.css?v=<?= date('Ymdhis') ?>">
+
 </head>
 
 <body>
 	<header>
 		<?php
-		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php";
+		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
 		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
@@ -39,7 +40,7 @@ $menu_code = "product";
 			$rows = $product->find_of_num($num);
 
 			// 비로그인 이거나 관리자가 아닌경우
-			if ($selevel != 1) {
+			if ($ses_level != 1) {
 				"alert_back('수정권한이 없습니다.')";
 				exit;
 			}
@@ -106,10 +107,10 @@ $menu_code = "product";
 				</ul>
 				<ul class="buttons">
 					<li>
-						<button type="button" id="check_input">완료</button>
+						<button type="button" id="btn_input">완료</button>
 					</li>
 					<li>
-						<button type="button" onclick="location.href='product_list.php'">목록</button>
+						<button type=" button" onclick="location.href='product_list.php'">목록</button>
 					</li>
 				</ul>
 			</form>
@@ -117,7 +118,7 @@ $menu_code = "product";
 	</section>
 	<!-- 푸터부분 시작 -->
 	<footer>
-		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php" ?>
+		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
 	</footer>
 </body>
 

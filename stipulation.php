@@ -6,7 +6,7 @@ $js_array = ['js/stipulation.js'];
 $title = "회원가입조건";
 $menu_code = "member";
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
 ?>
 
 <!-- 메인 시작 -->
@@ -68,7 +68,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
       <button type="button" class="btn btn-primary w-50" id="btn_member">다음</button>
       <button type="button" class="btn btn-secondary w-50" id="btn_cancel">취소</button>
     </div>
-    <form name="member_form" action="./member_input.php" method="post" style="display: none;">
+    <form name="member_form" action="./member/member_input.php" method="post" style="display: none;">
       <input type="hidden" name="chk" value="0">
     </form>
   </main>
@@ -76,5 +76,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
 <!-- 메인 종료 -->
 
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
 ?>

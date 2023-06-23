@@ -150,7 +150,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
           ?>
             <li><button class="list_button" onclick="location.href='write_qna_form.php?mode=update&num=<?=$num?>&page=<?=$page?>'">수 정</button></li>
             <li><button class="list_button" onclick="confirm_to_delete();">삭 제</button></li>
-            <li><button class="list_button" onclick="location.href='http://<?=$_SERVER['HTTP_HOST']?>/ilhase/cs/qna.php'">목 록</button></li>
+            <li><button class="list_button" onclick="location.href='http://<?=$_SERVER['HTTP_HOST']?>/php_treefare/'">목 록</button></li>
 
           <?php
             }

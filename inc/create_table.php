@@ -3,7 +3,7 @@
 function create_table($conn, $table_name)
 {
   $createTableFlag = false;
-  $sql = "show tables from memberStudy where tables_in_memberStudy = :table_name";
+  $sql = "show tables from treefare where tables_in_treefare = :table_name";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(":table_name", $table_name);
   $result = $stmt->execute();
@@ -148,7 +148,19 @@ function create_table($conn, $table_name)
               PRIMARY KEY (`num`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         break;
-
+        case 'notice' :
+          $sql = "CREATE TABLE `notice` (
+              `num` int(11) NOT NULL AUTO_INCREMENT,
+              `subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+              `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+              `file_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+              `file_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+              `file_copied` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+              `hit` int(10) unsigned NOT NULL DEFAULT '0',
+              `regist_date` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+              PRIMARY KEY (`num`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+          break;
       default:
         $sql = "";
         print "<script>

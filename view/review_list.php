@@ -63,11 +63,11 @@ try {
 $title = "reviews";
 $menu_code = "review";
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_header.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
 ?>
 
 <?php //헤더부분 시작
-// include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+// include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc/inc_header.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
 // include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
@@ -92,5 +92,5 @@ create_table($conn, "reviews");
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
 ?>

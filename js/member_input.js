@@ -1,4 +1,15 @@
 document.addEventListener(`DOMContentLoaded`, () => {
+  // 아이디 변경 시 중복확인 체크 해제
+  const form_id = document.querySelector("#form_id");
+  form_id.addEventListener("input", () => {
+    document.input_form.id_check.value = "0";
+  });
+
+  // 이메일 변경 시 중복확인 체크 해제
+  const form_email = document.querySelector("#form_email");
+  form_email.addEventListener("input", () => {
+    document.input_form.email_check.value = "0"
+  })
   // 아이디 중복체크
   const btn_id_check = document.querySelector(`#btn_id_check`);
   btn_id_check.addEventListener(`click`, () => {
@@ -19,7 +30,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
     }
     //ajax 점검
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./pg/member_process.php", true);
+    xhr.open("POST", "../pg/member_process.php", true);
     // 전송 데이터 생성
     const formdata = new FormData();
     formdata.append("id", document.input_form.id.value);
@@ -81,7 +92,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
     //ajax 점검
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./pg/member_process.php", true);
+    xhr.open("POST", "../pg/member_process.php", true);
     // 전송 데이터 생성
     const formdata = new FormData();
     formdata.append("email", document.input_form.email.value);
