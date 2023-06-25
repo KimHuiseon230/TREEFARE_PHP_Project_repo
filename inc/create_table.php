@@ -148,8 +148,8 @@ function create_table($conn, $table_name)
               PRIMARY KEY (`num`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         break;
-        case 'notice' :
-          $sql = "CREATE TABLE `notice` (
+      case 'notice':
+        $sql = "CREATE TABLE `notice` (
               `num` int(11) NOT NULL AUTO_INCREMENT,
               `subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
               `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -160,7 +160,19 @@ function create_table($conn, $table_name)
               `regist_date` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
               PRIMARY KEY (`num`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-          break;
+        break;
+      case 'message':
+        "CREATE TABLE `message` (
+          `num` int(11) NOT NULL AUTO_INCREMENT,
+          `send_id` char(20) NOT NULL,
+          `rv_id` char(20) NOT NULL,
+          `subject` char(200) NOT NULL,
+          `content` text NOT NULL,
+          `regist_day` char(20) DEFAULT NULL,
+          PRIMARY KEY (`num`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 
+        ";
+        break;
       default:
         $sql = "";
         print "<script>

@@ -1,11 +1,11 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
+$imageboard = new ImageBoard($conn);
 session_start();
 $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
 $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
 $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
-$imageboard = new ImageBoard($conn);
 
 
 if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
@@ -15,7 +15,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $imageboard->find_of_num($num);
     $writer = $row["id"];
 
-    if (!$ses_level==10) {
+    if (!$ses_level == 10) {
         die("
         <script>
         alert('수정권한이 없습니다.');
@@ -242,18 +242,18 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         exit;
     }
     //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
-   
+
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
 
     $q_ses_id =  $ses_id;
-   
+
     $sql = "select * from `member` where id =:q_ses_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':q_ses_id', $q_ses_id);
     $row = $stmt->fetch();
     $result = $stmt->execute();
 
-   
+
     exit;
     if (!$result) {
         die('Error: ' . mysqli_error($conn));
@@ -288,7 +288,6 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         // }
 
         echo "<script>location.href='./board_view.php?num=$parent&page=$page&hit=$hit';</script>";
-        
     } //end of if rowcount
 } else if (isset($_POST["mode"]) && $_POST["mode"] == "delete_ripple") {
     $page = $_POST["page"];

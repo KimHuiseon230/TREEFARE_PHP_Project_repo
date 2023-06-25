@@ -97,7 +97,98 @@ class Notic
             </script>";
   }
 
+  function insert_response()
+  {
+    global $conn, $user_id;
+    $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
+    $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
+    $question = $this->filter_data($_GET["question"]);
+    $short_question = mb_substr($question, 0, 8);
+    if (!isset($_GET['question'])) {
+      echo "question parameter is missing";
+      return;
+    }
+    $subject = $this->filter_data($_POST["subject"]);
+    $content = $this->filter_data($_POST["content"]);
 
+    $num = $this->filter_data($_GET["num"]);
+    $hit = $this->filter_data($_POST["hit"]);
+
+    $hit = 0;
+
+    $regist_day = date("Y-m-d (H:i)");
+    $sql = "SELECT * from qna where num =:num;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":num", $num, PDO::PARAM_INT);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$rows) {
+      die('Error: ' . $stmt->errorInfo());
+    }
+    $row = $rows[0];
+    // 질문글 작성자
+    $writer = $row['id'];
+
+    // 현재 그룹넘버값을 가져와서 저장한다.
+    $group_num = (int)$row['group_num'];
+    // 현재 들여쓰기값을 가져와서 증가한후 저장한다.
+    $depth = (int)$row['depth'] + 1;
+    // 현재 순서값을 가져와서 증가한후 저장한다.
+    $order = (int)$row['order'] + 1;
+
+    $sql = "UPDATE `qna` SET `order`=:plus_order WHERE `group_num` = :group_num and `order` >= :order";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(":group_num", $group_num, PDO::PARAM_INT);
+    $stmt->bindValue(":plus_order", ++$order, PDO::PARAM_INT);
+    $stmt->bindValue(":order", $order, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      die('Error: ' . $stmt->errorInfo());
+    }
+
+    $sql = "INSERT INTO `qna` VALUES (null,
+        :group_num, :depth, :order, :ses_id,:ses_name,:subject,:content, :hit,:regist_day);";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':group_num', $group_num);
+    $stmt->bindValue(':depth', $depth);
+    $stmt->bindValue(':order', $order);
+    $stmt->bindValue(':ses_id', $ses_id);
+    $stmt->bindValue(':user_name', $ses_name);
+    $stmt->bindValue(':subject', $subject);
+    $stmt->bindValue(':content', $content);
+    $stmt->bindValue(':hit', $hit);
+    $stmt->bindValue(':regist_day', $regist_day);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      die('Error: ' . $stmt->errorInfo());
+    }
+
+    $sql = "SELECT max(num) from qna;";
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      die('Error: ' . $stmt->errorInfo());
+    }
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $max_num = $row['max(num)'];
+
+    // 답변 등록 알림
+    $noti_subject = '1:1문의 답변이 도착했습니다.';
+    $noti_content = '문의하신 [' . $short_question . '...]에 대한 답변이 도착하였습니다.';
+    $receiver = $writer;
+    $this->insert_notification($noti_subject, $noti_content, $receiver);
+    echo "<script>location.href='./qna_view.php?num=$max_num&hit=$hit';</script>";
+  }
+  function insert_notification($title, $content, $id)
+  {
+    global $conn;
+
+    $sql = "insert into notification values (null, '$title', '$content', now(), 0, '$id')";
+    $result = mysqli_query($conn, $sql);
+    if (!$result) {
+      mysqli_error($conn);
+    }
+  }
   function select_by_user()
   {
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
@@ -121,7 +212,7 @@ class Notic
       $hit = $row['hit'];
       $content = str_replace([" ", "\n"], ["&nbsp;", "<br>"], $row['content']);
 
-      if ($row['depth'] === '0') {
+      if ($row['depth'] == 0) {
         // 질문글인 경우
         echo '
             <div class="question_preview">
@@ -136,7 +227,35 @@ class Notic
                 <span class="message">' . $content . '</span>
             </div>';
       }
- 
     }
+  }
+
+  public function update_qna($hit, $num)
+  {
+    $sql = "UPDATE `qna` SET `hit`=:hit WHERE `num`=:num";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(":hit", $hit, PDO::PARAM_INT);
+    $stmt->bindParam(":num", $num, PDO::PARAM_INT);
+    $result = $stmt->execute();
+
+    if (!$result) {
+      die('Error: ' . $stmt->errorInfo()[2]);
+    }
+  }
+
+  public function select_qna($num)
+  {
+    $sql = "SELECT * from `qna` WHERE `num`=:num";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(":num", $num, PDO::PARAM_INT);
+    $result = $stmt->execute();
+
+    if (!$result) {
+      die('Error: ' . $stmt->errorInfo()[2]);
+    }
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
   }
 }
