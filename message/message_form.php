@@ -13,7 +13,7 @@ if ($ses_id == '') {
 $css_array = ['css/message.css'];
 $js_array = ['/js/message.js'];
 $title = "쪽지 작성";
-$menu_code = "message";;
+$menu_code = "message";
 
 //헤더부분 시작
 include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";

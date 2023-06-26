@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+$js_array = ['js/product_view.js'];
+?>
+
 <head>
   <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/product_view.css?v=<?= date('Ymdhis') ?>">
 </head>
@@ -9,6 +13,8 @@
   <header>
     <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
+    $product = new Product($conn);
     ?>
   </header>
   <section>
@@ -23,13 +29,7 @@
           $num = $_GET["num"];
           $page = $_GET["page"];
 
-          $sql = "select * from `product` where num = :num";
-          $stmt = $conn->prepare($sql);
-          $stmt->bindParam(':num', $num);
-          $stmt->setFetchMode(PDO::FETCH_ASSOC);
-          $stmt->execute();
-          $row = $stmt->fetch();
-
+          $row = $product->find_of_num2($num);
           $num = $row["num"];
           $name = $row["name"];
           $kind = $row["kind"];
@@ -69,7 +69,7 @@
           }
           ?>
           <div class="order">
-            <div class="product">
+            <div class="product" style="margin-top: 50px;">
               <div class="context">
                 <?php
                 if (strpos($file_type, "image") !== false) {
@@ -91,7 +91,7 @@
                 <input type="hidden" name="file_copied" value="<?= $file_copied ?>">
                 <input type="hidden" name="type" value="<?= $type ?>">
                 <input type="hidden" name="name" value="<?= $name ?>">
-                <input type="hidden" name="price" value="<?= $price ?>">
+                <input type="hidden" name="sale" value="<?= $sale ?>">
                 <input type="hidden" name="content" value="<?= $content ?>">
                 <ul id="view_shop">
                   <div class="info">
@@ -191,9 +191,20 @@
                   </li>
                   <div class="d-flex justify-content-center ">
                     <li class="cart"><button class="green_button">장바구니</button></li>
-                    <li class="cart"><button class="green_button">구매하기</button></li>
+                    <li class="cart"><button type="button" id="btn_buy" class="green_button">구매하기</button></li>
                   </div>
                 </ul>
+              </form>
+              <form name="cart_form2" action="../cart/cart_di.php" method="POST">
+                <input type="hidden" name="mode2" value="insert2">
+                <input type="hidden" name="file_name" value="<?= $file_name ?>">
+                <input type="hidden" name="file_type" value="<?= $file_type ?>">
+                <input type="hidden" name="file_copied" value="<?= $file_copied ?>">
+                <input type="hidden" name="type" value="<?= $type ?>">
+                <input type="hidden" name="name" value="<?= $name ?>">
+                <input type="hidden" name="sale" value="<?= $sale ?>">
+                <input type="hidden" id="count" name="count" value="">
+                <input type="hidden" name="content" value="<?= $content ?>">
               </form>
             </div>
           </div>
@@ -207,6 +218,5 @@
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
   </footer>
 </body>
-<script src="http://<?= $_SERVER['HTTP_HOST']; ?>/hwaeun/js/header.js"></script>
 
 </html>

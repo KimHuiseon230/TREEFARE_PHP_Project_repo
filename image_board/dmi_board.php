@@ -1,32 +1,22 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
-$imageboard = new ImageBoard($conn);
 session_start();
 $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
 $ses_name = (isset($_SESSION['ses_name']) && $_SESSION['ses_name'] != '') ? $_SESSION['ses_name'] : '';
 $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+$imageboard = new ImageBoard($conn);
+// var_dump($ses_id);
+// var_dump($ses_level);
 
 
 if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $num = $_POST["num"];
     $page = $_POST["page"];
 
-    $imageboard->find_of_num($num);
-    $writer = $row["id"];
+    $copied_name = (isset($row["file_copied"]) && $row["file_copied"] != '') ? $row["file_copied"] : '';
 
-    if (!$ses_level == 10) {
-        die("
-        <script>
-        alert('수정권한이 없습니다.');
-        history.go(-1)
-        </script>
-    ");
-    }
-    $copied_name = $row["file_copied"];
-
-
-    if ($copied_name) {
+    if ($copied_name != '') {
         $file_path = "./data/" . $copied_name;
         unlink($file_path);
     }
@@ -52,12 +42,9 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 
     $subject = $_POST["subject"];
     $content = $_POST["content"];
-    // $subject = input_set($subject);
-    // $content = input_set($content);
+    $rating = $_POST["rating"];
     $regist_day = date("Y-m-d (H:i)");  // 현재의 '년-월-일-시-분'을 저장
-
     $upload_dir = "./data/";
-
     $upfile_name = $_FILES["upfile"]["name"];
     $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
     $upfile_type = $_FILES["upfile"]["type"];
@@ -104,33 +91,13 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         'ses_name' => $ses_name,
         'subject' => $subject,
         'content' => $content,
+        'rating' => $rating,
         'regist_day' => $regist_day,
         'upfile_name' => $upfile_name,
         'upfile_type' => $upfile_type,
         'copied_file_name' => $copied_file_name
     ];
     $imageboard->insert_of_num($arr);
-
-    // $sql = "insert into image_board (id, name, subject, content, regist_day, hit,  file_name, file_type, file_copied) ";
-    // $sql .= "values('$ses_id', '$ses_name', '$subject', '$content', '$regist_day', 0, ";
-    // $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name')";
-    // $stmt = $conn->prepare($sql); // $sql 에 저장된 명령 실행
-    // $stmt->execute();
-
-    // 포인트 부여하기
-    $point_up = 100;
-
-    // $sql = "select point from `member` where id='$ses_id'";
-    // $stmt = $conn->prepare($sql);
-    // $row = $stmt->fetch();
-    // // $result = mysqli_query($con, $sql);
-    // // $row = mysqli_fetch_array($result);
-    // $new_point = $row["point"] + $point_up;
-
-    // $sql = "update `member` set point=$new_point where id='$ses_id'";
-    // $stmt = $conn->prepare($sql);
-    // $stmt->execute();
-
     echo "
 	   <script>
 	    location.href = 'board_list.php';
@@ -142,12 +109,12 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
 
     $subject = $_POST["subject"];
     $content = $_POST["content"];
+    $rating = $_POST["rating"];
     $file_delete = (isset($_POST["file_delete"])) ? $_POST["file_delete"] : 'no';
 
     $row = $imageboard->find_of_num2($num);
 
     $copied_name = $row["file_copied"];
-
     $upfile_name = $row["file_name"];
     $upfile_type = $row["file_type"];
     $copied_file_name = $row["file_copied"];
@@ -215,22 +182,13 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         'num' => $num,
         'subject' => $subject,
         'content' => $content,
+        'rating' => $rating,
         'upfile_name' => $upfile_name,
         'upfile_type' => $upfile_type,
         'copied_file_name' => $copied_file_name,
     ];
 
     $imageboard->update_of_num($arr);
-
-    // $sql = "update `image_board` set subject=:subject, content=:content,  file_name=:upfile_name, file_type=:upfile_type, file_copied=:copied_file_name";
-    // $sql .= " where num=$num";
-    // $stmt = $conn->prepare($sql);
-    // $stmt->bindParam(':subject', $subject);
-    // $stmt->bindParam(':content', $content);
-    // $stmt->bindParam(':upfile_name', $upfile_name);
-    // $stmt->bindParam(':upfile_type', $upfile_type);
-    // $stmt->bindParam(':copied_file_name', $copied_file_name);
-    // $result = $stmt->execute();
     echo "
 	      <script>
 	          location.href = 'board_list.php?page=$page';
@@ -244,23 +202,8 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
 
     $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-
     $q_ses_id =  $ses_id;
-
-    $sql = "select * from `member` where id =:q_ses_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':q_ses_id', $q_ses_id);
-    $row = $stmt->fetch();
-    $result = $stmt->execute();
-
-
-    exit;
-    if (!$result) {
-        die('Error: ' . mysqli_error($conn));
-    }
-
-    // $rowcount = mysqli_num_rows($result);
-
+    $rowcount = $imageboard->find_test($q_ses_id);
 
     if (!$rowcount) {
         echo "<script>alert('없는 아이디!!');history.go(-1);</script>";
@@ -270,38 +213,27 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         $page = $_POST["page"];
         $parent = $_POST["parent"];
         $hit = $_POST["hit"];
-        $q_usernick = isset($_SESSION['usernick']) ? HTMLSPECIALCHARS($_SESSION['usernick']) : null;
-
-        $q_ses_name = $_SESSION['ses_name'];
-
-        $q_content = HTMLSPECIALCHARS($content);
         $q_parent = HTMLSPECIALCHARS($parent);
+        $q_username = $_SESSION['ses_name'];
+        $q_content = HTMLSPECIALCHARS($content);
         $regist_day = date("Y-m-d (H:i)");
+        // 연관배열
+        $arr = [
+            'q_parent' =>  $q_parent,
+            'q_ses_id' => $q_ses_id,
+            'q_username' => $q_username,
+            'q_content' => $q_content,
+            'regist_day' => $regist_day,
+        ];
 
         $imageboard->insert_image_board_ripple($arr);
-        // $sql = "INSERT INTO `image_board_ripple` VALUES (null,'$q_parent','$q_ses_id','$q_ses_name', '$q_usernick','$q_content','$regist_day')";
-        // $stmt = $conn->prepare($sql);
-        // $row = $stmt->fetch();
-        // $result = $stmt->execute();
-        // if (!$result) {
-        //     die('Error: ' . mysqli_error($conn));
-        // }
-
-        echo "<script>location.href='./board_view.php?num=$parent&page=$page&hit=$hit';</script>";
+        echo "<script>location.href='./board_view.php?num=$parent&page=$page';</script>";
     } //end of if rowcount
 } else if (isset($_POST["mode"]) && $_POST["mode"] == "delete_ripple") {
     $page = $_POST["page"];
-    $hit = $_POST["hit"];
     $num = $_POST["num"];
     $parent = $_POST["parent"];
 
-    $sql = "DELETE FROM `image_board_ripple` WHERE num=:num";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':num', $num);
-    $result = $stmt->execute();
-    $row = $stmt->fetch();
-    if (!$result) {
-        die('Error: ' . mysqli_error($conn));
-    }
-    echo "<script>location.href='./board_view.php?num=$parent&page=$page&hit=$hit';</script>";
+    $imageboard->del_image_board_ripple($num);
+    echo "<script>location.href='./board_view.php?num=$parent&page=$page';</script>";
 }

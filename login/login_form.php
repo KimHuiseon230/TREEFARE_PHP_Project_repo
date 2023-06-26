@@ -11,7 +11,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
 ?>
 
 <!-- 메인부분 시작 -->
-<div class="container">
+<div class="container mt-5 p-5">
   <main class="w-50 p-5 border rounded-5 mx-auto" style="height: calc(100vh - 260px);">
     <form name="input_form" class="w-50 mx-auto" method="post" action="" autocomplete="off">
 
@@ -29,7 +29,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
         <label for="form_pw">비밀번호</label>
       </div>
 
-      <button type="button" class="btn btn-primary w-100 mt-5 btn-lg" id="btn_login">로그인</button>
+      <button type="button" class="btn btn-primary w-100 mt-5 btn-lg" id="btn_login" onkeyup="enterkey();">로그인</button>
 
     </form>
   </main>

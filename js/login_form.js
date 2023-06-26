@@ -3,7 +3,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
   btn_login.addEventListener("click", () => {
     const form_id = document.querySelector(`#form_id`);
     if (form_id.value == "") {
-      alert(" 아이디를 입력해주세요");
+      alert("아이디를 입력해주세요");
       form_id.focus();
       return false;
     }
@@ -55,6 +55,10 @@ document.addEventListener(`DOMContentLoaded`, () => {
             break;
           case "empty_mode":
             alert("모드를 설정해주세요.");
+            break;
+          case "admin_login_success":
+            alert("환영합니다.");
+            self.location.href = "../admin/admin.php";
             break;
           case "login_success":
             alert("환영합니다.");

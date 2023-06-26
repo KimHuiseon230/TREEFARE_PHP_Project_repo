@@ -1,0 +1,146 @@
+.main_content {
+    padding-top: 90px;
+    width: 100%;
+    font-family: 'S-CoreDream-3Light';
+  }
+
+  .main_content a {
+    text-decoration-line: none;
+  }
+
+  .blank {
+    height: 8px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+
+  .gray {
+    color: rgb(204, 204, 204);
+  }
+
+  .cart_top {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    margin-bottom: 10px;
+    padding-right: 5px;
+  }
+
+  .cart_top h2 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .cart_title {
+    display: flex;
+    border-top: 2px solid #2b3729;
+    border-bottom: 1px solid #b0bbac;
+    font-size: 16px;
+    padding: 5px;
+    font-weight: 600;
+    background-color: #dfdfdf;
+  }
+
+  #cart_list {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 5px 5px 5px;
+    padding-bottom: 3px;
+    padding-left: 0;
+    min-height: 400px;
+  }
+
+  .check {
+    width: 100px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .pic {
+    width: 200px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .type {
+    width: 80px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .name {
+    width: 300px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .price {
+    width: 200px;
+    text-align: center;
+    margin-right: 5px;
+  }
+
+  .count {
+    width: 130px;
+    text-align: center;
+  }
+
+  .red_button {
+    margin-top: 20px;
+    border: none;
+    background-color: #782f2f;
+    color: white;
+    height: 30px;
+    width: 150px;
+    font-family: 'S-CoreDream-3Light';
+  }
+
+  .green_button {
+    margin-top: 20px;
+    border: none;
+    background-color: #3a4a37;
+    color: white;
+    height: 30px;
+    width: 150px;
+    font-family: 'S-CoreDream-3Light';
+  }
+
+  .subject {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  .subject a,
+  #page_num a {
+    color: var(--normal_font);
+  }
+
+  .subject a:hover {
+    text-decoration-line: underline;
+    text-underline-position: under;
+  }
+
+  .calculate {
+    font-size: 25px;
+    font-weight: 600;
+    float: right;
+    display: flex;
+  }
+
+  .calculate>p {
+    margin-top: 5px;
+  }
+
+  .calculate>li {
+    list-style: none;
+  }

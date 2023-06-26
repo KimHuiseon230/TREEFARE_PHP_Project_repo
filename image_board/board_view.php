@@ -10,12 +10,15 @@
 <body>
 	<header>
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
+		$imageboard = new ImageBoard($conn);
 		?>
 	</header>
 	<section>
 		<div id="board_box">
 			<h3 class="title">
-				이미지 게시판 > 내용보기
+				리뷰게시판 > 내용보기
 			</h3>
 			<?php
 			if (!$ses_id) {
@@ -31,32 +34,21 @@
 			$num = $_GET["num"];
 			$page = $_GET["page"];
 
-			$sql = "select * from image_board where num=:num";
-			$stmt = $conn->prepare($sql);
-			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			$stmt->bindParam(':num', $num);
-			$stmt->execute();
-			$row = $stmt->fetch();
-
+			$row = $imageboard->find_of_num2($num);
 
 			$id = $row["id"];
 			$name = $row["name"];
 			$regist_day = $row["regist_day"];
 			$subject = $row["subject"];
 			$content = $row["content"];
+			$rating = $row["rating"];
 			$file_name = $row["file_name"];
 			$file_type = $row["file_type"];
 			$file_copied = $row["file_copied"];
-			$hit = $row["hit"];
 
 			$content = str_replace(" ", "&nbsp;", $content);
 			$content = str_replace("\n", "<br>", $content);
-			if ($ses_id !== $id) {
-				$new_hit = $hit + 1;
-				$sql2 = "update image_board set hit=$new_hit where num=:num";
-				$stmt2 = $conn->prepare($sql2);
-				$stmt->execute();
-			}
+
 			$file_name_0 = $row['file_name'];
 			$file_copied_0 = $row['file_copied'];
 			$file_type_0 = $row['file_type'];
@@ -77,6 +69,9 @@
 					<span class="col2"><?= $name ?> | <?= $regist_day ?></span>
 				</li>
 				<li>
+					<span class="col1"><b>별점 :</b> <?php echo $imageboard->fetch_star($rating); ?></span>
+				</li>
+				<li>
 					<?php
 
 					if (strpos($file_type_0, "image") !== false) {
@@ -89,10 +84,11 @@
 						echo "▷ 첨부파일 : $file_name ($file_size Byte) &nbsp;&nbsp;&nbsp;&nbsp;
 			       		<a href='board_download.php?num=$num&real_name=$real_name&file_name=$file_name&file_type=$file_type'>[저장]</a><br><br>";
 					}
-
-
 					?>
-					<?= $content ?>
+
+				</li>
+				<li>
+					<span class="col1"> <?= $content ?></span>
 				</li>
 			</ul>
 			<!--덧글내용시작  -->
@@ -100,17 +96,11 @@
 				<div id="ripple1">덧글</div>
 				<div id="ripple2">
 					<?php
-					$sql = "select * from `image_board_ripple` where parent=:num ";
-					$stmt3 = $conn->prepare($sql);
-					$stmt3->setFetchMode(PDO::FETCH_ASSOC);
-					$stmt3->bindParam(':num', $num);
-					$stmt3->execute();
-					$rowArray = $stmt3->fetchALl();
+					$rowArray = $imageboard->find_of_ripple_num($num);
 
 					foreach ($rowArray as $row) {
 						$ripple_num = $row['num'];
 						$ripple_id = $row['id'];
-						$ripple_nick = $row['nick'];
 						$ripple_date = $row['regist_day'];
 						$ripple_content = $row['content'];
 						$ripple_content = str_replace("\n", "<br>", $ripple_content);
@@ -125,15 +115,13 @@
 									<?php
 									if ($_SESSION['ses_id'] == "admin" || $_SESSION['ses_id'] == $ripple_id) {
 										echo '
-                                               <form style="display:inline" action="dmi_board.php" method="post">
+                            <form style="display:inline" action="dmi_board.php" method="post">
 													    <input type="hidden" name="page" value="' . $page . '">
-													    <input type="hidden" name="hit" value="' . $hit . '">
 													    <input type="hidden" name="mode" value="delete_ripple">
 													    <input type="hidden" name="num" value="' . $ripple_num . '">
 													    <input type="hidden" name="parent" value="' . $num . '">
-													    
 													    <input type="submit" value="삭제">
-													    </form>';
+													  </form>';
 									}
 									?>
 								</li>
@@ -187,6 +175,8 @@
 	</section>
 	<footer>
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
+	</footer>
+
 </body>
 
 </html>

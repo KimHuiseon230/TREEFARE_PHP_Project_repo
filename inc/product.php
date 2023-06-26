@@ -74,33 +74,29 @@ class Product
         $stmt->execute();
         return $stmt->fetch();
     }
-    // num  select
-    public function Login_Comments($q_userid)
+
+    public function row_cnt()
     {
-        $sql = "select * from `product` where id =:q_userid";
+        $sql = "select count(*) as cnt from `product` order by num desc";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':q_userid', $q_userid);
-        $stmt->fetch();
-        $result = $stmt->execute();
-        if (!$result) {
-            die('Error: ' . mysqli_error($this->conn));
-        }
-        return    $stmt->rowCount();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
-    public function find_test($q_userid)
+    public function page_limit($kind)
     {
-
-        $sql = "select * from `product` where id =:q_userid";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':q_userid', $q_userid);
-        $stmt->fetch();
-        $result = $stmt->execute();
-
-        if (!$result) {
-            die('Error: ' . mysqli_error($this->conn));
+        if ($kind == 0) {
+            $sql = "select * from  product order by num desc";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        } else {
+            $sql = "select * from  product where kind = {$kind} order by num desc";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
         }
 
-        return $stmt->rowCount();
+        $stmt->execute();
+        return  $stmt->fetchAll();
     }
 }

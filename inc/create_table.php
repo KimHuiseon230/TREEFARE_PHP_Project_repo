@@ -85,8 +85,8 @@ function create_table($conn, $table_name)
             `name` char(10) NOT NULL,
             `subject` char(200) NOT NULL,
             `content` text NOT NULL,
+            `rating` INT(1),
             `regist_day` char(20) NOT NULL,
-            `hit` int(11) NOT NULL,
             `file_name` char(40) DEFAULT NULL,
             `file_type` char(40) DEFAULT NULL,
             `file_copied` char(40) DEFAULT NULL,
@@ -99,7 +99,7 @@ function create_table($conn, $table_name)
           `parent` int(11) NOT NULL,
           `id` char(15) NOT NULL,
           `name` char(10) NOT NULL,
-          `nick` char(10) NOT NULL,
+          `content` varchar(255) NOT NULL,
           `regist_day` char(20) DEFAULT NULL,
           PRIMARY KEY (num)
         ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
@@ -125,12 +125,27 @@ function create_table($conn, $table_name)
         `price` char(15) NOT NULL,
         `sale` char(15) NOT NULL,
         `content` varchar(255) NOT NULL,
-        `file_name` char(40) NOT NULL,
+        `file_name` char(255) NOT NULL,
         `file_type` varchar(255) DEFAULT NULL,
         `file_copied` varchar(255) DEFAULT NULL,
         `regist_day` char(20) DEFAULT NULL,
         PRIMARY KEY (`num`)
       ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+        break;
+
+      case 'cart':
+        $sql = "CREATE TABLE `cart` (
+              `s_num` int(11) NOT NULL AUTO_INCREMENT,
+              `s_id` char(15) NOT NULL,
+              `s_name` char(45) NOT NULL,
+              `s_sale` char(15) NOT NULL,
+              `s_count` char(15) NOT NULL,
+              `s_file_name` char(40) NOT NULL,
+              `s_file_type` varchar(255) DEFAULT NULL,
+              `s_file_copied` varchar(255) DEFAULT NULL,
+              `s_regist_day` char(20) DEFAULT NULL,
+              PRIMARY KEY (`s_num`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
         break;
 
       case 'qna':
@@ -149,30 +164,19 @@ function create_table($conn, $table_name)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         break;
       case 'notice':
-        $sql = "CREATE TABLE `notice` (
-              `num` int(11) NOT NULL AUTO_INCREMENT,
-              `subject` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-              `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-              `file_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-              `file_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-              `file_copied` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-              `hit` int(10) unsigned NOT NULL DEFAULT '0',
-              `regist_date` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-              PRIMARY KEY (`num`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        $sql = "CREATE TABLE notice (
+                num int(11) NOT NULL AUTO_INCREMENT,
+                subject varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                content text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                file_name varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+                file_type varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+                file_copied varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+                hit int(10) unsigned NOT NULL DEFAULT '0',
+                regist_date char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                PRIMARY KEY (num)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         break;
-      case 'message':
-        "CREATE TABLE `message` (
-          `num` int(11) NOT NULL AUTO_INCREMENT,
-          `send_id` char(20) NOT NULL,
-          `rv_id` char(20) NOT NULL,
-          `subject` char(200) NOT NULL,
-          `content` text NOT NULL,
-          `regist_day` char(20) DEFAULT NULL,
-          PRIMARY KEY (`num`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 
-        ";
-        break;
+
       default:
         $sql = "";
         print "<script>

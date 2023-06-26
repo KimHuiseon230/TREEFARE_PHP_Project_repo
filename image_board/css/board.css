@@ -31,10 +31,16 @@
 li{
     list-style :none;
 }
-#view_content li:nth-child(1) {	padding: 15px; border-bottom: solid 1px #aaaaaa; }
+#view_content li {	padding: 15px; border-bottom: solid 1px #aaaaaa; }
 #view_content .col2 { float: right; }
-#view_content li:nth-child(2) {	padding: 15px 15px 80px 15px; border-bottom: solid 1px #cccccc; }
 #view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
 #view_content{
     padding:  0;
 }
+#ripple1{
+    margin-left: 15px;
+}
+#ripple2{
+    padding: 15px;
+}
+

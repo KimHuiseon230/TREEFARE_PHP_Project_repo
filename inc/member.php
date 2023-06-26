@@ -115,4 +115,63 @@ class Member
     $stmt = $this->conn->prepare($sql);
     $stmt->execute($params);
   }
+  //회원 삭제
+  public function member_del($idx)
+  {
+    $sql = "delete from `member` where `idx` = :idx";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':idx', $idx);
+    $stmt->execute();
+  }
+  //사용자 정보 전체 가져오기
+  public function list($paramArr)
+  {
+    $where = "";
+    if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
+      switch ($paramArr['sn']) {
+        case 1:
+          $sn_str = 'name';
+          break;
+        case 2:
+          $sn_str = 'id';
+          break;
+        case 3:
+          $sn_str = 'email';
+          break;
+      }
+      $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
+    }
+
+    $sql = "select idx, id, name, email, DATE_FORMAT(create_at, '%Y-%m-%d %H:%i') as create_at from 
+    `member` {$where} order by idx";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+  // 전체목록(조건 : 이름, 아이디, 이메일 목록)
+  public function total($paramArr)
+  {
+    $where = "";
+    if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
+      switch ($paramArr['sn']) {
+        case 1:
+          $sn_str = 'name';
+          break;
+        case 2:
+          $sn_str = 'id';
+          break;
+        case 3:
+          $sn_str = 'email';
+          break;
+      }
+      $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
+    }
+    $sql = "select count(*) as cnt from `member` " . $where;
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    $row = $stmt->fetch();
+    return $row['cnt'];
+  }
 }

@@ -1,6 +1,6 @@
 <?php
 // 공통적으로 처리하는 부분
-$js_array = ['/image_board/js/board.js', '/image_board/js/board_form.js'];
+$js_array = ['/image_board/js/board_form.js'];
 $title = "게시판";
 $menu_code = "board";
 ?>
@@ -37,6 +37,7 @@ $menu_code = "board";
 		$mode = isset($_POST["mode"]) ? $_POST["mode"] : "insert";
 		$subject = "";
 		$content = "";
+		$rating = "";
 		$file_name = "";
 
 		if (isset($_POST["mode"]) && $_POST["mode"] === "modify") {
@@ -45,7 +46,7 @@ $menu_code = "board";
 
 			$rows = $imageboard->find_of_num($num);
 			// 비로그인 이거나 관리자가 아닌경우
-			if (!isset($ses_id) && $ses_level != 1) {
+			if (!isset($ses_id) && $ses_level != 10) {
 				"alert_back('수정권한이 없습니다.')";
 				exit;
 			}
@@ -54,6 +55,7 @@ $menu_code = "board";
 				$name = $row["name"];
 				$subject = $row["subject"];
 				$content = $row["content"];
+				$rating = $row["rating"];
 				$file_name = $row["file_name"];
 				$file_copied = $row["file_copied"];
 				if (empty($file_name)) $file_name = "없음";
@@ -63,9 +65,9 @@ $menu_code = "board";
 		<div id="board_box">
 			<h3 id="board_title">
 				<?php if ($mode === "modify") : ?>
-					이미지 게시판 > 수정 하기
-					<?php else : ?>ｖ
-					이미지 게시판 > 글 쓰기
+					리뷰게시판 > 수정 하기
+				<?php else : ?>
+					리뷰게시판 > 글 쓰기
 				<?php endif; ?>
 			</h3>
 			<form name="board_form" method="post" action="dmi_board.php" enctype="multipart/form-data">
@@ -83,6 +85,16 @@ $menu_code = "board";
 					<li>
 						<span class="col1">제목 : </span>
 						<span class="col2"><input name="subject" type="text" value=<?= $subject ?>></span>
+					</li>
+					<li>
+						<span class="col1">별점 : </span>
+						<select name="rating" id="rating">
+							<option name="rating" value="1">1</option>
+							<option name="rating" value="2">2</option>
+							<option name="rating" value="3">3</option>
+							<option name="rating" value="4">4</option>
+							<option name="rating" value="5">5</option>
+						</select>
 					</li>
 					<li id="text_area">
 						<span class="col1">내용 : </span>
@@ -102,7 +114,7 @@ $menu_code = "board";
 				</ul>
 				<ul class="buttons">
 					<li>
-						<button type="button" onclick="check_input()">완료</button>
+						<button type="button" id="check_input">완료</button>
 					</li>
 					<li>
 						<button type="button" onclick="location.href='board_list.php'">목록</button>
@@ -115,6 +127,10 @@ $menu_code = "board";
 	<footer>
 		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
 	</footer>
+	<script>
+		const rating = document.querySelector("#rating");
+		rating.value = '<?= $rating ?>';
+	</script>
 </body>
 
 </html>

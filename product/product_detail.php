@@ -4,7 +4,7 @@
     }
 </style>
 
-<div class="container w-100" style="margin: auto;">
+<div class="container w-100 m-auto">
     <img src="./img/shop1.png" alt="상세이미지1">
     <img src="./img/shop2.png" alt="상세이미지2">
     <img src="./img/shop3.png" alt="상세이미지3">

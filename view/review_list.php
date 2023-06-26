@@ -10,7 +10,6 @@ try {
   $query = 'SELECT * FROM reviews ORDER BY id DESC LIMIT 9';
   $stmt = $conn->prepare($query);
   $stmt->execute();
-
   $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
   echo "Error: " . $e->getMessage();

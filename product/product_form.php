@@ -9,7 +9,6 @@ $menu_code = "product";
 
 <head>
 	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/board.css?v=<?= date('Ymdhis') ?>">
-
 </head>
 
 <body>
@@ -40,7 +39,7 @@ $menu_code = "product";
 			$rows = $product->find_of_num($num);
 
 			// 비로그인 이거나 관리자가 아닌경우
-			if ($ses_level != 1) {
+			if ($ses_level != 10) {
 				"alert_back('수정권한이 없습니다.')";
 				exit;
 			}
@@ -110,7 +109,7 @@ $menu_code = "product";
 						<button type="button" id="btn_input">완료</button>
 					</li>
 					<li>
-						<button type=" button" onclick="location.href='product_list.php'">목록</button>
+						<button type="button" onclick="location.href='product_list.php'">목록</button>
 					</li>
 				</ul>
 			</form>

@@ -34,7 +34,6 @@
 			$stmt->execute();
 			$row = $stmt->fetch();
 
-
 			$num = $row["num"];
 			$name = $row["name"];
 			$kind = $row["kind"];
@@ -45,18 +44,12 @@
 			$file_copied_0 = $row['file_copied'];
 			$file_type_0 = $row['file_type'];
 			$regist_day = $row["regist_day"];
-
 			$content = str_replace(" ", "&nbsp;", $content);
 			$content = str_replace("\n", "<br>", $content);
-			// if ($ses_id !== $id) {
-			// 	$new_hit = $hit + 1;
-			// 	$sql2 = "update image_board set hit=$new_hit where num=:num";
-			// 	$stmt2 = $conn->prepare($sql2);
-			// 	$stmt->execute();
-			// }
 			$file_name_0 = $row['file_name'];
 			$file_copied_0 = $row['file_copied'];
 			$file_type_0 = $row['file_type'];
+
 			//이미지 정보를 가져오기 위한 함수 width, height, type
 			if (!empty($file_name_0)) {
 				$image_info = getimagesize("./data/" . $file_copied_0);
@@ -68,34 +61,23 @@
 				if ($image_width > 300) $image_width = 300;
 			}
 			?>
+
+			<!-- 수정 content 시작 -->
 			<ul id="view_content">
 				<li>
 					<span class="col1"><b>상품명 :</b> <?= $name ?></span>
 					<span class="col2">등록일 : <?= $regist_day ?></span>
 				</li>
-				<li><span class="col1"><b>종류 :</b> <?= $kind ?></span></li>
-
 				<li><span class="col1"><b>원가 :</b> <?= $price ?></span></li>
-
 				<li><span class="col1"><b>세일가격 :</b> <?= $sale ?></span></li>
-
 				<li><span class="col1"><b>제품설명 :</b> <?= $content ?></span></li>
 				<li><span class="col1"><b>제품 이미지 :</b> <?= $file_name_0 ?></li>
-				<li>
-					<?php
+				<li><?php
 					if (strpos($file_type_0, "image") !== false) {
 						echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
-					}
-					// } else if ($file_name) {
-					// 	$real_name = $file_copied;
-					// 	$file_path = "./data/" . $real_name;
-					// 	$file_size = filesize($file_path);  //파일사이즈를 구해주는 함수
-					// 	echo "▷ 첨부파일 : $file_name ($file_size Byte) &nbsp;&nbsp;&nbsp;&nbsp;
-					// 	<a href='board_download.php?num=$num&real_name=$real_name&file_name=$file_name&file_type=$file_type'>[저장]</a><br><br>";
-					// }
-					?>
-				</li>
+					} ?></li>
 			</ul>
+
 			<!-- 밑에 버튼 -->
 			<div id="write_button">
 				<ul class="buttons">
@@ -126,6 +108,7 @@
 	</section>
 	<footer>
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
+	</footer>
 </body>
 
 </html>

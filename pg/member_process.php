@@ -101,7 +101,12 @@ switch ($mode) {
           $_SESSION['ses_id'] = $id;
           $_SESSION['ses_name'] = $userInfo['name'];
           $_SESSION['ses_level'] = $userInfo['level'];
-          die(json_encode(['result' => 'login_success']));
+          $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+          if ($ses_level == 10) {
+            die(json_encode(['result' => 'admin_login_success']));
+          } else {
+            die(json_encode(['result' => 'login_success']));
+          }
           break;
         case 'pw_fail':
           die(json_encode(['result' => 'pw_fail']));

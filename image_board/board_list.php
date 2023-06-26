@@ -16,7 +16,10 @@ $menu_code = "board";
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";;
+        $imageboard = new ImageBoard($conn);
         create_table($conn, "image_board");
         create_table($conn, "image_board_ripple");
 
@@ -25,7 +28,7 @@ $menu_code = "board";
     <section>
         <div id="board_box">
             <h3>
-                미술작품 > 목록보기
+                리뷰게시판 > 목록보기
             </h3>
             <ul id="board_list">
                 <?php
@@ -35,32 +38,23 @@ $menu_code = "board";
                     $page = 1;
 
                 $page = (isset($_GET["page"]) && is_numeric($_GET["page"]) && $_GET["page"] != "") ? $_GET["page"] : 1;
-                $sql = "select count(*) as cnt from image_board order by num desc";
-                $stmt = $conn->prepare($sql);
-                $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                $result = $stmt->execute();
-                $row = $stmt->fetch();
+                $row = $imageboard->row_cnt();
                 $total_record = $row['cnt'];
-                $scale = 10;
+                $scale = 6;
 
                 // 표시할 페이지($page)에 따라 $start 계산  
                 $start = ($page - 1) * $scale;
-
                 $number = $total_record - $start;
-                $sql2 = "select * from  image_board order by num desc limit {$start}, {$scale}";
-                $stmt2 = $conn->prepare($sql2);
-                $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-                $result = $stmt2->execute();
-                $rowArray = $stmt2->fetchAll();
+                $rowArray = $imageboard->row_limit($start, $scale);
 
                 foreach ($rowArray as $row) {
                     // 하나의 레코드 가져오기
                     $num = $row["num"];
                     $id = $row["id"];
                     $name = $row["name"];
+                    $rating = $row["rating"];
                     $subject = $row["subject"];
                     $regist_day = $row["regist_day"];
-                    $hit = $row["hit"];
                     $file_name_0 = $row['file_name'];
                     $file_copied_0 = $row['file_copied'];
                     $file_type_0 = $row['file_type'];
@@ -74,7 +68,8 @@ $menu_code = "board";
                                 else echo "<img src='./img/user.jpg' width='$image_width' height='$image_height'><br>" ?>
                                 <?= $subject ?></a><br>
                             <?= $id ?><br>
-                            <?= $regist_day ?>
+                            <?= $regist_day ?><br>
+                            <?php echo $imageboard->fetch_star($rating); ?>
                         </span>
                     </li>
                 <?php
@@ -83,11 +78,10 @@ $menu_code = "board";
                 ?>
             </ul>
 
-
-
             <div class="container d-flex justify-content-center align-items-start mb-3 gap-3">
                 <?php
                 $set_page_limit = 5;
+                echo pagination($total_record, $scale, $set_page_limit, $page);
                 ?>
                 <button type="button" class="btn btn-outline-dark " id="btn_excel">엑셀로 저장</button>
             </div>

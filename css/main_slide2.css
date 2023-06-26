@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+* {
+  font-family: "Noto Serif Korean";
+}
+
+/* 두번쨰 슬라이드 */
+
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  clear: both;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.slide-wrapper {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 1s;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  margin: 0 -50px;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}

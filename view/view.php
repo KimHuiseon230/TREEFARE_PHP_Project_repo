@@ -183,7 +183,6 @@ $menu_code = "review";
 </div>
 </div>
 
-
 <!-- 푸터부분 시작 -->
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc/inc_footer.php"
