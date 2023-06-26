@@ -1,6 +1,6 @@
 <?php
 
-class Member
+class Message
 {
   private $conn;
 
@@ -8,170 +8,141 @@ class Member
   {
     $this->conn = $db;
   }
-  //아이디 검사
-  public function id_exists($id)
+
+  public function
+  message_insert($send_id, $rv_id, $subject, $content)
   {
-    $sql = "select * from `member` where id=:id";
+    //중요함
+    $subject = htmlspecialchars($subject, ENT_QUOTES);
+    $content = htmlspecialchars($content, ENT_QUOTES);
+    $regist_day = date("Y-m-d (H:i)");
+
+    $sql = "select * from `member` where id=:rv_id";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    // (0,null,'',false) : false 나머지는 : true
-    return $stmt->rowCount() ? true : false;
-  }
-  //이메일 패턴검사
-  public function email_form_check($email)
-  {
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
-  }
-  //이메일 검사
-  public function email_exists($email)
-  {
-    $sql = "select * from `member` where email=:email";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    // (0,null,'',false) : false          나머지는 : true
-    return $stmt->rowCount() ? true : false;
-  }
-  //데이터 입력
-  public function input($arr)
-  {
-    // 단방향 암호화 처리 방법
-    $pass_hash = password_hash($arr['password'], PASSWORD_DEFAULT);
-    $sql = "INSERT INTO `member`(`id`,`name`,`email`,`password`,`zipcode`,`addr1`,`addr2`,`photo`,`ip`,`create_at`,`login_at`)
-    VALUES(:id,:name,:email,:password,:zipcode,:addr1,:addr2,:photo,:ip,now(),now());";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':id', $arr['id']);
-    $stmt->bindParam(':name', $arr['name']);
-    $stmt->bindParam(':email', $arr['email']);
-    $stmt->bindParam(':password', $pass_hash);
-    $stmt->bindParam(':zipcode', $arr['zipcode']);
-    $stmt->bindParam(':addr1', $arr['addr1']);
-    $stmt->bindParam(':addr2', $arr['addr2']);
-    $stmt->bindParam(':photo', $arr['photo']);
-    $stmt->bindParam(':ip', $_SERVER['REMOTE_ADDR']);
-    $stmt->execute();
-  }
-  // 아이디와 패스워드 검사
-  public function login($id, $pw)
-  {
-    $sql = "select * from `member` where `id`=:id";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $info = $stmt->rowCount() ? true : false;
-    if ($info == true) {
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      if (password_verify($pw, $row['password'])) {
-        // 로그인 성공 시 로그인 시간 등록
-        $sql = "update `member` set `login_at` = now() where `id` = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return "login_success";
-      } else {
-        // 패스워드가 맞지 않는 경우
-        return "pw_fail";
-      }
-    } else {
-      // 아이디가 없는 경우
-      return "id_fail";
+    $stmt->bindParam(':rv_id', $rv_id);
+    $result = $stmt->execute();
+
+    if (!$result) {
+      die("<script>
+      alert('아이디 쿼리문 오류');
+      history.go(-1);
+      </script>");
     }
+    $count = $stmt->rowCount() ? true : false;
+    if ($count != 0) {
+      $sql = "insert into message(send_id, rv_id, subject, content, regist_day) values (:send_id, :rv_id, :subject, :content, :regist_day)";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam(':send_id', $send_id);
+      $stmt->bindParam(':rv_id', $rv_id);
+      $stmt->bindParam(':subject', $subject);
+      $stmt->bindParam(':content', $content);
+      $stmt->bindParam(':regist_day', $regist_day);
+      $stmt->execute();
+    } else {
+      die("<script>
+      alert('수신 아이디가 잘못되었습니다!');
+      history.go(-1);
+      </script>");
+    }
+    echo "
+    <script>
+    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/message/message_box.php?mode=send'</script>
+    ";
   }
-  // 사용자 정보
-  public function getInfo($id)
+
+  public function
+  sel_message_num($num)
   {
-    $sql = "select * from `member` where `id`=:id";
+    $sql = "select * from message where num=:num";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':id', $id);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':num', $num);
+    $stmt->execute();
+    return  $stmt->fetch();
+  }
+  public function
+  sel_name_member_id($send_id)
+  {
+    $sql = "select name from `member` where id=:send_id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':send_id', $send_id);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    return  $stmt->fetch();
+  }
+
+  public function
+  sel_name_member_id_chk($rv_id, $send_id)
+  {
+    $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+    $sql = "SELECT name FROM `member` WHERE `id`=:id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(':id', ($mode == "send" ? $rv_id : $send_id));
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    return  $stmt->fetch();
+  }
+  public function
+  sel_cnt_message_id_chk($ses_id)
+  {
+    $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+    if ($mode == "send")
+      $sql = "select count(*) as cnt from message where send_id=:ses_id order by num desc";
+    else
+      $sql = "select count(*) as cnt from message where rv_id=:ses_id order by num desc";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':ses_id', $ses_id);
+    $stmt->execute();
+    return  $stmt->fetch();
+  }
+  public function
+  sel_message_id_chk($ses_id,  $start, $scale)
+  {
+    // $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+
+    // if ($mode == "send")
+    //   $sql = "select * from message where send_id=:ses_id order by num desc limit {$start}, {$scale}";
+    // else
+    //   $sql = "select * from message where rv_id=:ses_id order by num desc limit {$start}, {$scale}";
+
+    // $stmt = $this->conn->prepare($sql);
+    // $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    // $stmt->bindParam(':ses_id', $ses_id);
+    // $stmt->execute();
+    // return  $stmt->fetchAll();
+  }
+
+  public function
+  sel_member_id_info($msg_id)
+  {
+    $sql = "select name from `member` where `id`=:msg_id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':msg_id', $msg_id);
     $stmt->execute();
     return $stmt->fetch();
   }
-  // 사용자 수정
-  public function edit($arr)
-  {
-    $sql = "UPDATE `member` SET `name` = :name, `email` = :email, 
-    `zipcode` = :zipcode, `addr1` = :addr1, `addr2` = :addr2, `photo`= :photo ";
+  // public function
+  // aaa($ses_id)
+  // {
+  //   $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+  //   $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
 
-    $params = [
-      ':name' => $arr['name'],
-      ':email' => $arr['email'],
-      ':zipcode' => $arr['zipcode'],
-      ':addr1' => $arr['addr1'],
-      ':addr2' => $arr['addr2'],
-      ':photo' => $arr['photo']
-    ];
-
-    if ($arr['password'] != '') {
-      $pass_hash = password_hash($arr['password'], PASSWORD_DEFAULT);
-      $sql .= ", `password` = :password ";
-      $params[':password'] = $pass_hash;
-    }
-
-    $sql .= " WHERE `id` = :id";
-    $params[':id'] = $arr['id'];
-
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute($params);
-  }
-  //회원 삭제
-  public function member_del($idx)
-  {
-    $sql = "delete from `member` where `idx` = :idx";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':idx', $idx);
-    $stmt->execute();
-  }
-  //사용자 정보 전체 가져오기
-  public function list($paramArr)
-  {
-    $where = "";
-    if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
-      switch ($paramArr['sn']) {
-        case 1:
-          $sn_str = 'name';
-          break;
-        case 2:
-          $sn_str = 'id';
-          break;
-        case 3:
-          $sn_str = 'email';
-          break;
-      }
-      $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
-    }
-
-    $sql = "select idx, id, name, email, DATE_FORMAT(create_at, '%Y-%m-%d %H:%i') as create_at from 
-    `member` {$where} order by idx";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $stmt->execute();
-    return $stmt->fetchAll();
-  }
-  // 전체목록(조건 : 이름, 아이디, 이메일 목록)
-  public function total($paramArr)
-  {
-    $where = "";
-    if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
-      switch ($paramArr['sn']) {
-        case 1:
-          $sn_str = 'name';
-          break;
-        case 2:
-          $sn_str = 'id';
-          break;
-        case 3:
-          $sn_str = 'email';
-          break;
-      }
-      $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
-    }
-    $sql = "select count(*) as cnt from `member` " . $where;
-    $stmt = $this->conn->prepare($sql);
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $stmt->execute();
-    $row = $stmt->fetch();
-    return $row['cnt'];
-  }
+  //   if ($mode == "send") {
+  //     $sql = "select count(*) as cnt from `message` where send_id=:ses_id order by num desc";
+  //     $stmt = $this->conn->prepare($sql);
+  //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  //     $stmt->bindParam(':ses_id', $ses_id);
+  //     $stmt->execute();
+  //     return $stmt->fetch();
+  //   } else
+  //     $sql = "select count(*) as cnt from `message` where rv_id=:ses_id order by num desc";
+  //   $stmt = $this->conn->prepare($sql);
+  //   $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  //   $stmt->bindParam(':ses_id', $ses_id);
+  //   $stmt->execute();
+  //   return $stmt->fetch();
+  // }
 }
