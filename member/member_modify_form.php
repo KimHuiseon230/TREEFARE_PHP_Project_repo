@@ -22,7 +22,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
 $member = new Member($conn);
 $memArr = $member->getInfo($ses_id);
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
+if ($ses_level == 10) {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+} else {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+}
 ?>
 <!-- 다음 스크립트 로딩(우편번호 찾기) -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

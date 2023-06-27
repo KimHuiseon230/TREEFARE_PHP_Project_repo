@@ -1,6 +1,3 @@
-*{
-/* border: 1px solid black; */
-}
 
 .main_content {
     padding-top: 90px;
@@ -55,7 +52,7 @@
     font-size: 16px;
     padding: 5px;
     font-weight: 600;
-    /* background-color: cornsilk; */
+    background-color: #f8f9fa;
   }
 
   #cart_list {
@@ -153,3 +150,5 @@
   .calculate>li {
     list-style: none;
   }
+  
+

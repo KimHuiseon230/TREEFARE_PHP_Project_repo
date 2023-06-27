@@ -2,6 +2,9 @@
 <html lang="en">
 
 <?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+
 $js_array = ['js/product_view.js'];
 ?>
 
@@ -11,7 +14,12 @@ $js_array = ['js/product_view.js'];
 
 <body>
   <header>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+    <?php
+    if ($ses_level == 10) {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+    } else {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+    }
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
     $product = new Product($conn);

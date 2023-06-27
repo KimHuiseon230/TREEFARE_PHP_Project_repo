@@ -124,8 +124,10 @@ class Member
     $stmt->execute();
   }
   //사용자 정보 전체 가져오기
-  public function list($paramArr)
+  public function list($page, $limit, $paramArr)
   {
+    $start = ($page - 1) * $limit;
+
     $where = "";
     if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
       switch ($paramArr['sn']) {
@@ -138,13 +140,18 @@ class Member
         case 3:
           $sn_str = 'email';
           break;
+
+        default:
+          break;
       }
       $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
     }
 
-    $sql = "select idx, id, name, email, DATE_FORMAT(create_at, '%Y-%m-%d %H:%i') as create_at from 
-    `member` {$where} order by idx";
+    $sql = "select idx, id, name, email,  DATE_FORMAT(create_at,'%Y-%m-%d %H:%i') AS `create_at` from `member` {$where}  order by `idx` desc limit {$start}, {$limit}";
     $stmt = $this->conn->prepare($sql);
+    // if ($where != '') {
+    //   $stmt->bindParam(':sf', $paramArr['sf']);
+    // }
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
     return $stmt->fetchAll();
@@ -173,5 +180,23 @@ class Member
     $stmt->execute();
     $row = $stmt->fetch();
     return $row['cnt'];
+  }
+  // 회원삭제
+  public function memberDelete($idx)
+  {
+    $sql = "delete from `member` where idx=:idx";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':idx', $idx);
+    $stmt->execute();
+  }
+  // 사용자 정보(idx를 통해서 가져옴)
+  public function getInfoFromIdx($idx)
+  {
+    $sql = "select * from `member` where idx=:idx";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':idx', $idx);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    return $stmt->fetch();
   }
 }

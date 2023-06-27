@@ -9,7 +9,7 @@ $menu_code = "notice";
 <html>
 
 <head>
-    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/image_board/css/board.css?v=<?= date('Ymdhis') ?>">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/notice_board/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
@@ -22,7 +22,7 @@ $menu_code = "notice";
             create_table($conn, "notice");
             ?>
         </header>
-        <section>
+        <section style="margin-top: 100px;">
             <div id="board_box">
                 <h3 id="board_title">
                     공지사항 > 글쓰기
@@ -39,14 +39,14 @@ $menu_code = "notice";
                                 <textarea name="content"></textarea>
                             </span>
                         </li>
-                        <li>
+                        <li id="file_li">
                             <span class="col1"> 첨부 파일</span>
                             <span class="col2"><input type="file" name="upfile"></span>
                         </li>
                     </ul>
                     <ul class="buttons">
-                        <li><button type="button" id="complete">완료</button></li>
-                        <li><button type="button" onclick="location.href='notice_list.php'">목록</button></li>
+                        <li><button class="btn btn-primary" id="complete">완료</button></li>
+                        <li><button class="btn btn-primary" onclick="location.href='notice_list.php'">목록</button></li>
                     </ul>
                 </form>
             </div>

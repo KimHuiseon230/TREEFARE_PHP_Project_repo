@@ -1,27 +1,25 @@
 <div class="container">
+<h2>AD</h2>
   <div id="main_slide">
     <div class="image-slider">
       <div class="slide-wrapper">
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review1.jpg" ' ?>" alt="1">
+          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/006.png ' ?>" alt="1">
         </div>
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review2.jpg"  ' ?>" alt="1">
+           <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/001.png ' ?>" alt="1">
         </div>
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review3.jpg"  ' ?>" alt="1">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/002.png ' ?>" alt="1">
         </div>
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review1.jpg"  ' ?>" alt="1">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/003.png ' ?>" alt="1">
         </div>
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review2.jpg"  ' ?>" alt="1">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/004.png ' ?>" alt="1">
         </div>
         <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review3.jpg"  ' ?>" alt="1">
-        </div>
-        <div class="slide">
-          <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/reviews/review1.jpg"  ' ?>" alt="1">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/slide2/005.png ' ?>" alt="1">
         </div>
       </div>
       <button class="prev-btn">Previous</button>

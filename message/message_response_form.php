@@ -18,7 +18,11 @@ $title = "쪽지 답장";
 $menu_code = "message";
 
 //헤더부분 시작
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+if ($ses_level == 10) {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+} else {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+}
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/message.php";

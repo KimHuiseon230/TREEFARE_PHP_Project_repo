@@ -1,3 +1,8 @@
+<?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +12,12 @@
 
 <body>
 	<header>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+		<?php
+		if ($ses_level == 10) {
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+		} else {
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+		}
 		?>
 	</header>
 	<?php
@@ -25,7 +35,7 @@
 			<?php
 			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 			$num = $_GET["num"];
-			$page = $_GET["page"];
+			$page = (isset($_GET["page"]) && $_GET["page"] != '') ? $_GET["page"] : '';
 
 			$sql = "select * from product where num=:num";
 			$stmt = $conn->prepare($sql);
@@ -73,16 +83,16 @@
 				<li><span class="col1"><b>제품설명 :</b> <?= $content ?></span></li>
 				<li><span class="col1"><b>제품 이미지 :</b> <?= $file_name_0 ?></li>
 				<li><?php
-					if (strpos($file_type_0, "image") !== false) {
-						echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
-					} ?></li>
+						if (strpos($file_type_0, "image") !== false) {
+							echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
+						} ?></li>
 			</ul>
 
 			<!-- 밑에 버튼 -->
 			<div id="write_button">
 				<ul class="buttons">
 					<li>
-						<button onclick="location.href='product_list.php?page=<?= $page ?>'">목록</button>
+						<button onclick="location.href='../admin/admin_product.php?page=<?= $page ?>'">목록</button>
 					</li>
 					<li>
 						<form action="product_form.php" method="post">

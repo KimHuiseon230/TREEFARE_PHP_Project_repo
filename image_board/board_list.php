@@ -1,3 +1,8 @@
+<?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +19,12 @@ $menu_code = "board";
 
 <body>
     <header>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+        <?php
+        if ($ses_level == 10) {
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+        } else {
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+        }
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";

@@ -8,7 +8,7 @@ $menu_code = "notice";
 ?>
 
 <head>
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/image_board/css/board.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/notice_board/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
@@ -17,6 +17,8 @@ $menu_code = "notice";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+    $noticeboard = new NoticeBoard($conn);
     ?>
   </header>
   <section>
@@ -37,14 +39,7 @@ $menu_code = "notice";
           ");
       }
 
-      $sql = "select * from notice where num=:num";
-
-      $stmt = $conn->prepare($sql);
-      $stmt->setFetchMode(PDO::FETCH_ASSOC);
-      $stmt->bindParam(':num', $num);
-      $stmt->execute();
-      $row = $stmt->fetch();
-
+      $row = $noticeboard->find_of_num2($num);
       $subject    = $row["subject"];
       $content    = $row["content"];
       $file_name    = $row["file_name"];
@@ -52,18 +47,11 @@ $menu_code = "notice";
       $file_copied  = $row["file_copied"];
       $hit          = $row["hit"];
       $regist_date          = $row["regist_date"];
-
       $content = str_replace(" ", "&nbsp;", $content);
       $content = str_replace("\n", "<br>", $content);
-
       $new_hit = $hit + 1;
 
-      $sql2 = "update notice set hit=:new_hit where num=:num";
-      $stmt2 = $conn->prepare($sql2);
-      $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-      $stmt2->bindParam(':new_hit', $new_hit);
-      $stmt2->bindParam(':num', $num);
-      $stmt2->execute();
+      $noticeboard->update_of_hit($new_hit, $num);
       ?>
       <ul id="view_content">
         <li>
@@ -85,10 +73,10 @@ $menu_code = "notice";
         </li>
       </ul>
       <ul class="buttons">
-        <li><button onclick="location.href='notice_list.php?page=<?= $page ?>'">목록</button></li>
-        <li><button onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button></li>
-        <li><button onclick="location.href='notice_delete.php?num=<?= $num ?>&page=<?= $page ?>'">삭제</button></li>
-        <li><button onclick="location.href='notice_form.php'">글쓰기</button></li>
+        <li><button class="btn btn-primary" onclick="location.href='notice_list.php?page=<?= $page ?>'">목록</button></li>
+        <li><button class="btn btn-primary" onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button></li>
+        <li><button class="btn btn-primary" onclick="location.href='notice_delete.php?num=<?= $num ?>&page=<?= $page ?>'">삭제</button></li>
+        <li><button class="btn btn-primary" onclick="location.href='notice_form.php'">글쓰기</button></li>
       </ul>
     </div> <!-- board_box -->
   </section>

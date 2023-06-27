@@ -1,10 +1,8 @@
 <meta charset="utf-8">
 <?php
 session_start();
-
 $ses_id = (isset($_SESSION["ses_id"]) && $_SESSION["ses_id"] != '') ? $_SESSION["ses_id"] : '';
 $ses_name = (isset($_SESSION["ses_name"]) && $_SESSION["ses_name"] != '') ? $_SESSION["ses_name"] : '';
-
 if ($ses_id == '' && $ses_name == '') {
 	die("
 	<script>
@@ -13,17 +11,12 @@ if ($ses_id == '' && $ses_name == '') {
     </script>           
    ");
 }
-
 $subject = (isset($_POST["subject"]) && $_POST["subject"] != '') ? $_POST["subject"] : '';
 $content = (isset($_POST["content"]) && $_POST["content"] != '') ? $_POST["content"] : '';
-
 $subject = htmlspecialchars($subject, ENT_QUOTES);
 $content = htmlspecialchars($content, ENT_QUOTES);
-
 $regist_date = date("Y-m-d (H:i)");  // 현재의 '년-월-일-시-분'을 저장
-
 $upload_dir = './data/';
-
 $upfile_name	 = $_FILES["upfile"]["name"];
 $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
 $upfile_type     = $_FILES["upfile"]["type"];
@@ -34,7 +27,6 @@ if ($upfile_name && !$upfile_error) {
 	$file = explode(".", $upfile_name);
 	$file_name = $file[0];
 	$file_ext  = $file[1];
-
 	$new_file_name = date("Y_m_d_H_i_s");
 	$copied_file_name = $new_file_name . "." . $file_ext;
 	$uploaded_file = $upload_dir . $copied_file_name;
@@ -63,19 +55,20 @@ if ($upfile_name && !$upfile_error) {
 }
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+$noticeboard = new NoticeBoard($conn);
 
-$sql = "insert into notice (num, subject, content, file_name, file_type, file_copied, hit, regist_date) ";
-$sql .= "values(:num, :subject, :content, :upfile_name, :upfile_type, :copied_file_name, 0, :regist_date)";
-$stmt = $conn->prepare($sql);
-$stmt->setFetchMode(PDO::FETCH_ASSOC);
-$stmt->bindParam(':num', $num);
-$stmt->bindParam(':subject', $subject);
-$stmt->bindParam(':content', $content);
-$stmt->bindParam(':upfile_name', $upfile_name);
-$stmt->bindParam(':upfile_type', $upfile_type);
-$stmt->bindParam(':copied_file_name', $copied_file_name);
-$stmt->bindParam(':regist_date', $regist_date);
-$stmt->execute();
+// 연관배열
+$arr = [
+	'subject' => $subject,
+	'content' => $content,
+	'upfile_name' => $upfile_name,
+	'upfile_type' => $upfile_type,
+	'copied_file_name' => $copied_file_name,
+	'regist_date' => $regist_date,
+];
+
+$noticeboard->insert_of_num($arr);
 
 echo "
 	   <script>

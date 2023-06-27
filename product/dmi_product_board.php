@@ -92,7 +92,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $product->insert_of_num($arr);
     echo ("
 	   <script>
-	    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/product/product_list.php';
+	    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/admin/admin_product.php';
 	   </script>
 	");
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "modify") {
@@ -179,7 +179,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $product->update_of_num($arr);
     echo "
 	      <script>
-	          location.href = 'product_list.php?page=$page';
+	          location.href = '../admin/admin_product.php';
 	      </script>
 	  ";
 }

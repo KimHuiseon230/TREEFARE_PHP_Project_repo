@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function moveSlide(index) {
     slideWrapper.style.transform =`translateX(-${
-      index * (80/ slides.length)
+      index * (52/ slides.length)
     }%)`;
   }
 

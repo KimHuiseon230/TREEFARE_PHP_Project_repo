@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+$js_array = ['/pay/js/main_slide2.js'];
+?>
 
 <head>
   <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/pay/css/pay.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/pay/css/card_slide.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
   <header>
 
     <?php
+    if ($ses_level == 10) {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+    } else {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+    }
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/cart.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
     create_table($conn, "cart");
     $cart = new Cart($conn);
     $member = new Member($conn);
+
     ?>
   </header>
   <?php
@@ -155,6 +166,54 @@
         </form>
       </main>
     </div>
+    <div class="container" style="margin-top: 50px">
+      <div class="container border rounded-5 p-5 " style="width: 1000px;">
+        <main class="p-5 border rounded-5" style="font-size: 20px;">
+          <h1 class="text-center">결제수단 선택</h1>
+          <input type="radio" checked><span style="vertical-align: middle;">&nbsp;&nbsp;계좌 간편결제</span></input><br>
+          <div class="container">
+            <div id="main_slide">
+              <div class="image-slider">
+                <div class="slide-wrapper">
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card1.png"  ' ?>" alt="1">
+                  </div>
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card2.png"  ' ?>" alt="1">
+                  </div>
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card3.png"  ' ?>" alt="1">
+                  </div>
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card4.png"  ' ?>" alt="1">
+                  </div>
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card5.png"  ' ?>" alt="1">
+                  </div>
+                  <div class="slide">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card6.png"  ' ?>" alt="1">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="radio"><span style="vertical-align: middle;">&nbsp;&nbsp;카카오페이</span><img src="./img/kakaopay.png" style="margin-left: 5px;"></input><br>
+            <input type="radio"><span style="vertical-align: middle;">&nbsp;&nbsp;페이코</span><img src="./img/payco.png" style="margin-left: 5px; width: 25px; height:25px;"></input><br>
+            <input type="radio"><span style="vertical-align: middle;">&nbsp;&nbsp;네이버페이</span><img src="./img/npay.png" style="margin-left: 5px; width: 60px; height:23px;"></input><br>
+            <input type="radio"><span style="vertical-align: middle;">&nbsp;&nbsp;토스</span><img src="./img/toss.png" style="margin-left: 5px; width: 60px; height:25px;"></input><br>
+            <div class="d-flex gap-2">
+              <div>
+                <input type="radio"><span style="vertical-align: middle;">&nbsp;&nbsp;무통장입금</span></input>
+              </div>
+              <div class="w-50">
+                <input type="text" class="form-control d-flex w-50"></input>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+
     <!-- 결제 이용약관 -->
     <div class="container" style="margin-top: 50px">
       <div class="container border rounded-5 p-5 " style="width: 1000px;">

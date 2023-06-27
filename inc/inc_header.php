@@ -56,7 +56,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a style="position: fixed; left: 46%;" class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>">트리페어</a>
+      <a style="position: fixed; left: 43%;" class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>"><img id="imglog" style="width: 250px; height: auto; ;" src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/log/003.png' ?>" alt=""></a>
 
       <div class="navbar navbar-expand-lg " id="mainNav">
         <div class="collapse navbar-collapse" id="navbarResponsive">

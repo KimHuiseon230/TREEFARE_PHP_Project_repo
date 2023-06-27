@@ -1,0 +1,25 @@
+/* 게시판 글쓰기(board_form.php) */
+li{
+  list-style: none;
+}
+#notice_form { position: relative; width: 800px; margin: 0 auto; }
+#notice_form h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#notice_form span { display: inline-block; }
+#notice_form .col1 { width: 150px; }
+#notice_form li {	padding: 12px; border-bottom: solid 1px #dddddd; }
+#notice_form input { width: 500px; height: 25px; }
+#notice_form textarea { width: 500px;	height: 130px; }
+#notice_form #text_area {	position: relative;	height: 158px; }
+#notice_form #text_area .col1 { position: absolute; top: 10px; }
+#notice_form #text_area .col2 { position: absolute; left: 166px; }
+#board_box .buttons { text-align: right; margin: 20px 0 40px 0; }
+#board_box .buttons li { display: inline; }
+#board_box .buttons button { padding: 5px 10px; cursor: pointer; }
+/* 게시판 내용보기(board_view.php) */
+#board_box { width: 800px; margin: 0 auto; }
+#board_title { margin-top: 30px; padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#view_content li:nth-child(1) {	padding: 15px; border-bottom: solid 1px #aaaaaa; }
+#view_content .col2 { float: right; }
+#view_content li:nth-child(2) {	padding: 15px 15px 80px 15px; border-bottom: solid 1px #cccccc; }
+#view_content li:nth-child(3) button { padding: 5px 20px; margin: 15px 0 40px 720px; cursor: pointer; }
+

@@ -1,4 +1,7 @@
 <?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+
 // 공통적으로 처리하는 부분
 $js_array = ['js/product_form.js'];
 $title = "상품";
@@ -14,7 +17,11 @@ $menu_code = "product";
 <body>
 	<header>
 		<?php
-		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+		if ($ses_level == 10) {
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+		} else {
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+		}
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
 		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";

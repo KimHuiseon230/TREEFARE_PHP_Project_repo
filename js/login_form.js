@@ -58,7 +58,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
             break;
           case "admin_login_success":
             alert("환영합니다.");
-            self.location.href = "../admin/admin.php";
+            self.location.href = "../index.php";
             break;
           case "login_success":
             alert("환영합니다.");

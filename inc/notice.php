@@ -136,7 +136,6 @@ class Notic
                 <span class="message">' . $content . '</span>
             </div>';
       }
- 
     }
   }
 }

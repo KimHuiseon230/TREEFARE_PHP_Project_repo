@@ -13,16 +13,17 @@ if ($num == '' && $page == '') {
 
 $subject = (isset($_POST["subject"]) && $_POST["subject"] != '') ? $_POST["subject"] : '';
 $content = (isset($_POST["content"]) && $_POST["content"] != '') ? $_POST["content"] : '';
-
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-$sql = "update notice set subject=:subject, content=:content ";
-$sql .= " where num=:num";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+$noticeboard = new NoticeBoard($conn);
 
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':subject', $subject);
-$stmt->bindParam(':content', $content);
-$stmt->bindParam(':num', $num);
-$stmt->execute();
+// 연관배열
+$arr = [
+	'num' => $num,
+	'subject' => $subject,
+	'content' => $content,
+];
+$noticeboard->update_of_num($arr);
 
 echo "
 	      <script>

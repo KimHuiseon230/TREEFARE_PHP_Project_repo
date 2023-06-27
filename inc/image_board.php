@@ -134,6 +134,55 @@ class ImageBoard
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function total($paramArr)
+    {
+        $where = "";
+        if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
+            switch ($paramArr['sn']) {
+                case 1:
+                    $sn_str = 'subject';
+                    break;
+                case 2:
+                    $sn_str = 'name';
+                    break;
+            }
+            $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
+        }
+        $sql = "select count(*) as cnt from image_board " . $where;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row['cnt'];
+    }
+
+    //사용자 정보 전체 가져오기
+    public function list($page, $limit, $paramArr)
+    {
+        $start = ($page - 1) * $limit;
+
+        $where = "";
+        if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
+            switch ($paramArr['sn']) {
+                case 1:
+                    $sn_str = 'subject';
+                    break;
+                case 2:
+                    $sn_str = 'name';
+                    break;
+            }
+            $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";
+        }
+
+        $sql = "select num, name, subject, file_name, DATE_FORMAT(regist_day, '%Y-%m-%d %H:%i') as regist_day from 
+    image_board {$where} order by num desc limit {$start}, {$limit}";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     // 댓글부분 시작
     public function find_of_ripple_num($num)
     {

@@ -1,3 +1,8 @@
+<?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +15,12 @@
     <?php
     $js_array = ['js/cart_list.js'];
 
+    if ($ses_level == 10) {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+    } else {
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+    }
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/cart.php";
     $cart = new Cart($conn);

@@ -1,4 +1,6 @@
 <?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
 // 보안부분 (세션등록, 체크할 내용, GET, POST)
 
 // 공통적으로 처리하는 부분
@@ -6,7 +8,11 @@ $js_array = ['js/stipulation.js'];
 $title = "회원가입조건";
 $menu_code = "member";
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php"
+if ($ses_level == 10) {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+} else {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+}
 ?>
 
 <!-- 메인 시작 -->

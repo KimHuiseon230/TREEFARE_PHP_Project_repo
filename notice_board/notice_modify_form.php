@@ -9,7 +9,7 @@ $menu_code = "notice";
 <html>
 
 <head>
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/image_board/css/board.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/notice_board/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
@@ -18,6 +18,8 @@ $menu_code = "notice";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+    $noticeboard = new NoticeBoard($conn);
     create_table($conn, "notice");
     ?>
   </header>
@@ -39,14 +41,7 @@ $menu_code = "notice";
             ");
       }
 
-
-      $sql = "select * from notice where num=:num";
-      $stmt = $conn->prepare($sql);
-      $stmt->setFetchMode(PDO::FETCH_ASSOC);
-      $stmt->bindParam(':num', $num);
-      $stmt->execute();
-      $row = $stmt->fetch();
-
+      $row = $noticeboard->find_of_num2($num);
       $subject    = $row["subject"];
       $content    = $row["content"];
       $file_name  = $row["file_name"];
@@ -69,8 +64,8 @@ $menu_code = "notice";
           </li>
         </ul>
         <ul class="buttons">
-          <li><button type="button" id="complete">수정하기</button></li>
-          <li><button type="button" onclick="location.href='notice_list.php'">목록</button></li>
+          <li><button class="btn btn-primary" id="complete">수정하기</button></li>
+          <li><button class="btn btn-primary" onclick="location.href='notice_list.php'">목록</button></li>
         </ul>
       </form>
     </div> <!-- board_box -->
