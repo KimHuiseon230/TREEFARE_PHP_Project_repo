@@ -45,7 +45,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/slide.php";
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 메인부분 시작 -->
-<div class="container">
+<div class="container p-5 ">
   <main class="w-50 mx-auto p-5 border rounded-5">
     <h1 class="text-center">관리자 회원수정</h1>
     <form name="input_form" method="post" action="edit_process.php" autocomplete="off" enctype="multipart/form-data">

@@ -93,13 +93,13 @@ class NoticeBoard
         if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
             switch ($paramArr['sn']) {
                 case 1:
-                    $sn_str = '번호';
+                    $sn_str = 'num';
                     break;
                 case 2:
-                    $sn_str = '제목';
+                    $sn_str = 'subject';
                     break;
                 case 3:
-                    $sn_str = '내용';
+                    $sn_str = 'content';
                     break;
 
                 default:
@@ -123,13 +123,13 @@ class NoticeBoard
         if ($paramArr['sn'] != '' && $paramArr['sf'] != '') {
             switch ($paramArr['sn']) {
                 case 1:
-                    $sn_str = '번호';
+                    $sn_str = 'num';
                     break;
                 case 2:
-                    $sn_str = '제목';
+                    $sn_str = 'subject';
                     break;
                 case 3:
-                    $sn_str = '내용';
+                    $sn_str = 'content';
                     break;
             }
             $where = " where {$sn_str} like '%{$paramArr['sf']}%' ";

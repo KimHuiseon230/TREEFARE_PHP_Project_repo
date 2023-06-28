@@ -25,7 +25,7 @@ $menu_code = "notice";
 
         ?>
     </header>
-    <section style="margin-top: 100px">
+    <section style="margin-top: 100px;  height: calc(100vh - 380px);">
         <div id="board_box">
             <div id="board_box">
                 <h3>

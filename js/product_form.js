@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn_input = document.querySelector("#btn_input");
-  btn_input.addEventListener("click", ()=>{
+  btn_input.addEventListener("click", () => {
     if (!document.board_form.name.value) {
       alert("상품명을 입력하세요!");
       document.board_form.name.focus();
@@ -22,5 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     document.board_form.submit();
+  });
+  const btn_back = document.querySelector("#btn_back");
+  btn_back.addEventListener("click", () => {
+    history.go(-1);
   });
 });

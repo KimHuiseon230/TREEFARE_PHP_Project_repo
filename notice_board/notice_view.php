@@ -21,8 +21,8 @@ $menu_code = "notice";
     $noticeboard = new NoticeBoard($conn);
     ?>
   </header>
-  <section>
-    <div id="board_box">
+  <section style="height: calc(100vh - 380px);">
+    <div id="board_box" style="margin-top: 100px;">
       <h3 class="title">
         공지사항 > 내용보기
       </h3>
@@ -74,9 +74,6 @@ $menu_code = "notice";
       </ul>
       <ul class="buttons">
         <li><button class="btn btn-primary" onclick="location.href='notice_list.php?page=<?= $page ?>'">목록</button></li>
-        <li><button class="btn btn-primary" onclick="location.href='notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button></li>
-        <li><button class="btn btn-primary" onclick="location.href='notice_delete.php?num=<?= $num ?>&page=<?= $page ?>'">삭제</button></li>
-        <li><button class="btn btn-primary" onclick="location.href='notice_form.php'">글쓰기</button></li>
       </ul>
     </div> <!-- board_box -->
   </section>

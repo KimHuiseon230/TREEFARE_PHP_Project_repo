@@ -16,13 +16,13 @@ $menu_code = "notice";
     <header>
         <header>
             <?php
-            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+            include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
             include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
             include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
             create_table($conn, "notice");
             ?>
         </header>
-        <section style="margin-top: 100px;">
+        <section style="margin-top: 100px; height: calc(100vh - 380px);">
             <div id="board_box">
                 <h3 id="board_title">
                     공지사항 > 글쓰기
@@ -46,7 +46,7 @@ $menu_code = "notice";
                     </ul>
                     <ul class="buttons">
                         <li><button class="btn btn-primary" id="complete">완료</button></li>
-                        <li><button class="btn btn-primary" onclick="location.href='notice_list.php'">목록</button></li>
+                        <li><button type="button" class="btn btn-primary" id="btn_back">목록</button></li>
                     </ul>
                 </form>
             </div>

@@ -13,5 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       document.notice_form.submit();
     });
+    const btn_back = document.querySelector("#btn_back");
+    btn_back.addEventListener("click", ()=>{
+      history.go(-1);
+    });
   });
   

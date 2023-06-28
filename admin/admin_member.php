@@ -54,7 +54,7 @@ $memberArr = $member->list($page, $limit, $paramArr);
 
   <section>
     <div class="container p-5">
-      <main class="p-5 border rounded-5" style="height:calc(100vh - 250px)">
+      <main class="p-5 border rounded-5">
         <h1 class="text-center">회원관리</h1>
         <table class="table table-hover mb-5">
           <thead>

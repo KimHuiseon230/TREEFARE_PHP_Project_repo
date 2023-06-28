@@ -25,7 +25,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 		$imageboard = new ImageBoard($conn);
 		?>
 	</header>
-	<section>
+	<section class="p-5">
 		<div id="board_box">
 			<h3 class="title">
 				리뷰게시판 > 내용보기
@@ -161,22 +161,28 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 					<li>
 						<button onclick="location.href='board_list.php?page=<?= $page ?>'">목록</button>
 					</li>
-					<li>
-						<form action="board_form.php" method="post">
-							<button>수정</button>
-							<input type="hidden" name="num" value=<?= $num ?>>
-							<input type="hidden" name="page" value=<?= $page ?>>
-							<input type="hidden" name="mode" value="modify">
-						</form>
-					</li>
-					<li>
-						<form action="dmi_board.php" method="post">
-							<button>삭제</button>
-							<input type="hidden" name="num" value=<?= $num ?>>
-							<input type="hidden" name="page" value=<?= $page ?>>
-							<input type="hidden" name="mode" value="delete">
-						</form>
-					</li>
+					<?php
+					if ($ses_id == $id) {
+					?>
+						<li>
+							<form action="board_form.php" method="post">
+								<button>수정</button>
+								<input type="hidden" name="num" value=<?= $num ?>>
+								<input type="hidden" name="page" value=<?= $page ?>>
+								<input type="hidden" name="mode" value="modify">
+							</form>
+						</li>
+						<li>
+							<form action="dmi_board.php" method="post">
+								<button>삭제</button>
+								<input type="hidden" name="num" value=<?= $num ?>>
+								<input type="hidden" name="page" value=<?= $page ?>>
+								<input type="hidden" name="mode" value="delete">
+							</form>
+						</li>
+					<?php
+					}
+					?>
 					<li>
 						<button onclick="location.href='board_form.php'">글쓰기</button>
 					</li>

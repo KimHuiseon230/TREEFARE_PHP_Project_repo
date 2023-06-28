@@ -27,7 +27,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 					</script>");
 	}
 	?>
-	<section>
+	<section class="p-5 mt-5">
 		<div id="board_box">
 			<h3 class="title">
 				관리자 상품페이지

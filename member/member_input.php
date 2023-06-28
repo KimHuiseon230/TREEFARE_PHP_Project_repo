@@ -30,7 +30,7 @@ create_table($conn, "member");
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 메인부분 시작 -->
-<div class="container">
+<div class="container p-5" style="margin-top: 70px;">
   <main class="w-50 p-5 border rounded-5 mx-auto">
     <h1 class="text-center">회원가입</h1>
     <form name="input_form" method="post" action="../pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
@@ -96,7 +96,7 @@ create_table($conn, "member");
           <label for="form_photo" class="form-label">프로필이미지</label>
           <input type="file" name="photo" class="form-control" id="form_photo">
         </div>
-        <img src="./images/person.jpg" alt="프로필 이미지" id="form_preview" class="w-25 rounded-5">
+        <img src="../images/person.jpg" alt="프로필 이미지" id="form_preview" class="w-25 rounded-5">
       </div>
 
       <div class="mt-3 d-flex justify-content-center gap-3">

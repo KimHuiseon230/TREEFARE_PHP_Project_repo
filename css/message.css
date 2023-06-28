@@ -6,7 +6,7 @@
 #write_msg .col1 { width: 150px; }
 #write_msg li {	padding: 12px; border-bottom: solid 1px #dddddd; }
 #write_msg input { width: 500px; height: 25px; }
-#write_msg textarea { width: 500px;	height: 150px; }
+#write_msg textarea { width: 500px;	height: 130px; }
 #write_msg #text_area {	position: relative;	height: 158px; }
 #write_msg #text_area .col1 { position: absolute; top: 10px; }
 #write_msg #text_area .col2 { position: absolute; left: 166px; }

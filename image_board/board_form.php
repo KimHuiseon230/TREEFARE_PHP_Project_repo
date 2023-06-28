@@ -38,7 +38,7 @@ $menu_code = "board";
 					</script>");
 	}
 	?>
-	<section>
+	<section class="p-5" style="height: calc(100vh - 280px);">
 
 		<?php
 		$mode = isset($_POST["mode"]) ? $_POST["mode"] : "insert";

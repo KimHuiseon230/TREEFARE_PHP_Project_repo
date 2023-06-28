@@ -23,7 +23,7 @@ if ($ses_level == 10) {
 }
 ?>
 <!-- 메인부분 시작 -->
-<section>
+<section class="mb-5 p-5" style="height: calc(100vh - 330px);">
   <div id="message_box">
     <h3>
       <?php

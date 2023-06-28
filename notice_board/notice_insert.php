@@ -72,7 +72,7 @@ $noticeboard->insert_of_num($arr);
 
 echo "
 	   <script>
-	    location.href = 'notice_list.php';
+	    location.href = '../admin/admin_notice_board.php';
 	   </script>
 	";
 ?>

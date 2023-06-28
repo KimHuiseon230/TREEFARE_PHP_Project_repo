@@ -35,7 +35,7 @@ $menu_code = "board";
 
         ?>
     </header>
-    <section>
+    <section class="p-5">
         <div id="board_box">
             <h3>
                 리뷰게시판 > 목록보기
@@ -77,7 +77,7 @@ $menu_code = "board";
                                 <?php if (strpos($file_type_0, "image") !== false) echo "<img src='./data/$file_copied_0' width='$image_width' height='$image_height'><br>";
                                 else echo "<img src='./img/user.jpg' width='$image_width' height='$image_height'><br>" ?>
                                 <?= $subject ?></a><br>
-                            <?= $id ?><br>
+                            <?= $name ?><br>
                             <?= $regist_day ?><br>
                             <?php echo $imageboard->fetch_star($rating); ?>
                         </span>
@@ -93,7 +93,6 @@ $menu_code = "board";
                 $set_page_limit = 5;
                 echo pagination($total_record, $scale, $set_page_limit, $page);
                 ?>
-                <button type="button" class="btn btn-outline-dark " id="btn_excel">엑셀로 저장</button>
             </div>
 
             <ul class="buttons">

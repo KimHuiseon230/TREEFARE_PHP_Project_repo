@@ -34,7 +34,7 @@ $menu_code = "board";
 					</script>");
 	}
 	?>
-	<section>
+	<section class="p-5" style="height: calc(100vh - 280px);">
 
 		<?php
 		$num = $_GET['num'];

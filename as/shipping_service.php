@@ -3,10 +3,12 @@
     font-size: 0.8rem;
     /* 폰트 크기를 12rem으로 적용 */
   }
+
   #strong_card-text {
     font-size: 2rem;
     /* 폰트 크기를 12rem으로 적용 */
   }
+
   .text-blue {
     color: cornflowerblue;
     /* 글자 색을 파란색으로 적용 */
@@ -114,7 +116,7 @@ if ($ses_level == 10) {
       </div>
       <div class="col-md-auto m-auto justify-content-around">
         <div class="">
-          <img src="../images/main_ad_img4.jpg" class="card-img-center" alt="..." style="height: 280px;">
+          <img src="../images/main_ad_img4.png" class="card-img-center" alt="..." style="height: 280px;">
         </div>
       </div>
     </div>
@@ -123,7 +125,7 @@ if ($ses_level == 10) {
   <div class="container justify-content-around mt-5">
     <div class="row" style="border: 1px black;">
       <div class="card m-auto  " style="width: 24rem;">
-        <img src="../images/main_ad_img5.jpg" class="card-img-top " alt="..." style="margin-top: 15px;">
+        <img src="../images/main_ad_img5.png" class="card-img-top " alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <strong>3,000원</strong>
           <p>
@@ -137,7 +139,7 @@ if ($ses_level == 10) {
         </div>
       </div>
       <div class="card m-auto  " style="width: 24rem;">
-        <img src="../images/main_ad_img6.jpg" class="card-img-top" alt="..." style="margin-top: 15px;">
+        <img src="../images/main_ad_img6.png" class="card-img-top" alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <strong>5,000원</strong>
           <p>
@@ -151,7 +153,7 @@ if ($ses_level == 10) {
         </div>
       </div>
       <div class="card m-auto  " style="width: 24rem;">
-        <img src="../images/main_ad_img7.jpg" class="card-img-top" alt="..." style="margin-top: 15px;">
+        <img src="../images/main_ad_img7.png" class="card-img-top" alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <strong>8,000원</strong>
           <p>

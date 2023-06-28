@@ -6,7 +6,7 @@
 #board_form ul {	float: left;}
 #board_form li {	padding: 12px; border-bottom: solid 1px #dddddd; }
 #board_form input:not([type=checkbox]):not([type=file]){ width: 500px; height: 25px; }
-#board_form textarea { width: 500px;	height: 150px; }
+#board_form textarea { width: 500px;	height: 135px; }
 #board_form #text_area {	position: relative;	height: 158px; }
 #board_form #text_area .col1 { position: absolute; top: 10px; }
 #board_form #text_area .col2 { position: absolute; left: 166px; }

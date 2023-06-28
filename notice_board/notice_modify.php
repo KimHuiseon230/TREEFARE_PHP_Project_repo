@@ -1,8 +1,7 @@
 <?php
 $num = (isset($_GET["num"]) && $_GET["num"] != '') ? $_GET["num"] : '';
-$page = (isset($_GET["page"]) && $_GET["page"] != '') ? $_GET["page"] : '';
 
-if ($num == '' && $page == '') {
+if ($num == '') {
 	die("
 	<script>
     alert('해당되는 정보가 없습니다.');
@@ -27,6 +26,6 @@ $noticeboard->update_of_num($arr);
 
 echo "
 	      <script>
-	          location.href = 'notice_list.php?page=$page';
+	          location.href = '../admin/admin_notice_board.php';
 	      </script>
 	  ";

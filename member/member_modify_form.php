@@ -32,8 +32,8 @@ if ($ses_level == 10) {
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- 메인부분 시작 -->
-<div class="container">
-  <main class="w-50 p-5 border rounded-5 mx-auto">
+<div class="container p-5 ">
+  <main class="w-50 p-5 border rounded-5 mx-auto" style="margin-top: 80px;">
     <h1 class="text-center">회원수정</h1>
     <form name="input_form" method="post" action="../pg/member_process.php" autocomplete="off" enctype="multipart/form-data">
       <input type="hidden" name="email_check" value="0">
@@ -99,9 +99,9 @@ if ($ses_level == 10) {
           <input type="file" name="photo" class="form-control" id="form_photo">
         </div>
         <?php if ($memArr['photo'] == '') {  ?>
-          <img src="./images/person.jpg" alt="프로필이미지" id="form_preview" class="w-25 rounded-5">
+          <img src="../images/person.jpg" alt="프로필이미지" id="form_preview" class="w-25 rounded-5">
         <?php } else {
-          echo "<img src='./data/profile/" . $memArr['photo'] . "' alt='프로필이미지' id='form_preview' class='w-25 rounded-5'>";
+          echo "<img src='../data/profile/" . $memArr['photo'] . "' alt='프로필이미지' id='form_preview' class='w-25 rounded-5'>";
         } ?>
       </div>
 

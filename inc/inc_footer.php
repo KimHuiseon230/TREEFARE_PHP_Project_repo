@@ -10,18 +10,18 @@
     </div>
     <div class="footer-column" style="width: 500px;">
 
-      <p>서울 강남구 단월면 윗고북길 1-227(메어리 빌딩) 7층 주식회사 프시케</p>
-      <p>사이트 운영자 : 주식회사 프시케 I 대표이사 : 구사월</p>
-      <p>사업자 등록번호 : 941-82-8871 사업자정보확인</p>
+      <p>서울 강남구 단월면 윗고북길 1-227(메어리 빌딩) 8층 주식회사 프리페어</p>
+      <p>사이트 운영자 : 주식회사 프리페어 I 대표이사 : 구사월</p>
+      <p>사업자 등록번호 : 963-82-1475 사업자정보확인</p>
       <p>통신판매업 신고번호 : 2012-서울서초-0647 I 개인정보보호책임자 : 박상철</p>
-      <p>COPYRIGHT © PSYCHE.CO.LTD.ALL RIGHTS RESERVED.</p>
+      <p>COPYRIGHT © treefare.CO.LTD.ALL RIGHTS RESERVED.</p>
     </div>
     <div class="footer-column" style="width: 200px;">
 
       <ul>
         <li><a href="#">고객센터</a></li>
         <li><a href="#">1644-2233</a></li>
-        <li><a href="#">winnter@psyche.co.kr</a></li>
+        <li><a href="#">treefare_admin001@treefare.co.kr</a></li>
         <p>상담전화 13:00 ~16:00 (평일)</p>
         <p>상담톡 10:00 ~16:00 (평일)</p>
       </ul>
@@ -30,8 +30,8 @@
 
       <ul>
         <li><a href="#">기업선물</a></li>
-        <li><a href="#">070-1234-4567</a></li>
-        <li><a href="#">spring@psyche.co.kr</a></li>
+        <li><a href="#">070-1234-5678</a></li>
+        <li><a href="#">treefare_admin009@treefare.co.kr</a></li>
       </ul>
     </div>
 

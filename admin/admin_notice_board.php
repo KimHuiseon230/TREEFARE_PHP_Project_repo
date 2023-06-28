@@ -9,7 +9,7 @@ $noticeBoard = new NoticeBoard($conn);
 
 // 공통적으로 처리하는 부분
 $css_array = ['css/admin.css'];
-$js_array = ['/js/admin_notice_board.js'];
+$js_array = ['admin/js/admin_notice_board.js'];
 $title = "관리자 모드";
 $menu_code = "admin";
 
@@ -27,7 +27,6 @@ $total = $noticeBoard->total($paramArr);
 $limit = 5;
 //4. 데이터베이스 테이블로부터 전체 내용을 가져온다.(만약 1page : 0, 5 :: 2page : 5, 5 :: 3page 10, 5)가져온다.
 $noticeArr = $noticeBoard->list($page, $limit, $paramArr);
-
 ?>
 
 <head>
@@ -54,7 +53,7 @@ $noticeArr = $noticeBoard->list($page, $limit, $paramArr);
 
   <section>
     <div class="container p-5">
-      <main class="p-5 border rounded-5" style="height:calc(100vh - 250px)">
+      <main class="p-5 border rounded-5">
         <h1 class="text-center">공지사항 관리</h1>
         <table class="table table-hover mb-5">
           <thead>
@@ -79,8 +78,8 @@ $noticeArr = $noticeBoard->list($page, $limit, $paramArr);
                 <td><?= $row['file_name'] ?></td>
                 <td><?= $row['regist_date'] ?></td>
                 <td>
-                  <button type='button' class="btn btn-primary btn-sm" onclick="location.href='../notice_board/notice_modify_form.php?num=<?= $num ?>&page=<?= $page ?>'">수정</button>
-                  <button type='button' class="btn btn-danger btn-sm" onclick="location.href='../notice_board/notice_delete.php?num=<?= $num ?>&page=<?= $page ?>'">삭제</button>
+                  <button type='button' class="btn btn-primary btn-sm btn_mem_edit" data-idx="<?= $row['num'] ?>">수정</button>
+                  <button type='button' class="btn btn-danger btn-sm btn_mem_delete" data-idx="<?= $row['num'] ?>">삭제</button>
                 </td>
               </tr>
             <?php

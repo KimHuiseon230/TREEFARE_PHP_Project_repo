@@ -30,7 +30,7 @@ $menu_code = "product";
 		?>
 
 	</header>
-	<section>
+	<section class="p-5 mt-5" style="height: calc(100vh - 330px);">
 		<?php
 		$mode = isset($_POST["mode"]) ? $_POST["mode"] : "insert";
 		$name = "";
@@ -116,7 +116,7 @@ $menu_code = "product";
 						<button type="button" id="btn_input">완료</button>
 					</li>
 					<li>
-						<button type="button" onclick="location.href='product_list.php'">목록</button>
+						<button type="button" id="btn_back">목록</button>
 					</li>
 				</ul>
 			</form>

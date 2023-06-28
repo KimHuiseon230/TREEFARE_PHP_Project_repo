@@ -29,7 +29,7 @@ $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION[
 
 ?>
 <!-- 메인부분 시작 -->
-<section>
+<section class="p-5" style="height: calc(100vh - 280px);">
   <?php
   if (!$ses_id) {
     die("<script>

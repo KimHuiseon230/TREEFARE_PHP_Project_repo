@@ -15,7 +15,7 @@ $menu_code = "notice";
 <body>
   <header>
     <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
     include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
     include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
@@ -23,16 +23,15 @@ $menu_code = "notice";
     create_table($conn, "notice");
     ?>
   </header>
-  <section>
+  <section class="p-5 mt-5" style="height: calc(100vh - 330px);">
     <div id="board_box">
       <h3 id="board_title">
         공지사항 > 글 수정
       </h3>
       <?php
       $num = (isset($_GET["num"]) && $_GET["num"] != '') ? $_GET["num"] : '';
-      $page = (isset($_GET["page"]) && $_GET["page"] != '') ? $_GET["page"] : '';
 
-      if ($num == '' && $page == '') {
+      if ($num == '') {
         die("
 	          <script>
             alert('해당되는 정보가 없습니다.');
@@ -46,7 +45,7 @@ $menu_code = "notice";
       $content    = $row["content"];
       $file_name  = $row["file_name"];
       ?>
-      <form name="notice_form" method="post" action="notice_modify.php?num=<?= $num ?>&page=<?= $page ?>" enctype="multipart/form-data">
+      <form name="notice_form" method="post" action="notice_modify.php?num=<?= $num ?>" enctype="multipart/form-data">
         <ul id="notice_form">
           <li>
             <span class="col1">제목 : </span>
@@ -65,7 +64,7 @@ $menu_code = "notice";
         </ul>
         <ul class="buttons">
           <li><button class="btn btn-primary" id="complete">수정하기</button></li>
-          <li><button class="btn btn-primary" onclick="location.href='notice_list.php'">목록</button></li>
+          <li><button class="btn btn-primary" type="button" id="btn_back">목록</button></li>
         </ul>
       </form>
     </div> <!-- board_box -->
