@@ -35,7 +35,7 @@ $menu_code = "board";
 
         ?>
     </header>
-    <section class="p-5">
+    <section class="p-5" style="height: calc(100vh - 10px);">
         <div id="board_box">
             <h3>
                 리뷰게시판 > 목록보기
@@ -96,9 +96,7 @@ $menu_code = "board";
             </div>
 
             <ul class="buttons">
-                <li>
-                    <button onclick="location.href='board_list.php'">목록</button>
-                </li>
+
                 <li>
                     <?php
                     if ($ses_id) {
@@ -108,7 +106,7 @@ $menu_code = "board";
                     } else {
                     ?>
                         <a href="javascript:alert('로그인 후 이용해 주세요!')">
-                            <button>글쓰기</button>
+                            <button class="btn btn-sm btn-primary">글쓰기</button>
                         </a>
                     <?php
                     }

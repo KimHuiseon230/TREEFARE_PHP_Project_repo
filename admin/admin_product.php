@@ -104,7 +104,6 @@ $productArr = $product->list($page, $limit, $paramArr);
           $page_limit = 5;
           echo pagination($total, $limit, $page_limit, $page, $paramArr)
           ?>
-          <button type="button" class="btn btn-outline-primary" id="btn_excel">엑셀로 저장</button>
           <button type="button" class="btn btn-outline-primary" onclick="location.href='../product/product_form.php'">상품추가</button>
         </div>
       </main>

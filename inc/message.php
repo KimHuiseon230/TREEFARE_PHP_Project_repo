@@ -12,7 +12,6 @@ class Message
   public function
   message_insert($send_id, $rv_id, $subject, $content)
   {
-    //중요함
     $subject = htmlspecialchars($subject, ENT_QUOTES);
     $content = htmlspecialchars($content, ENT_QUOTES);
     $regist_day = date("Y-m-d (H:i)");
@@ -61,17 +60,6 @@ class Message
     return  $stmt->fetch();
   }
   public function
-  sel_name_member_id($send_id)
-  {
-    $sql = "select name from `member` where id=:send_id";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(':send_id', $send_id);
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $stmt->execute();
-    return  $stmt->fetch();
-  }
-
-  public function
   sel_name_member_id_chk($rv_id, $send_id)
   {
     $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
@@ -83,9 +71,8 @@ class Message
     return  $stmt->fetch();
   }
   public function
-  sel_cnt_message_id_chk($ses_id)
+  sel_cnt_message_id_chk($ses_id, $mode)
   {
-    $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
     if ($mode == "send")
       $sql = "select count(*) as cnt from message where send_id=:ses_id order by num desc";
     else
@@ -98,20 +85,18 @@ class Message
     return  $stmt->fetch();
   }
   public function
-  sel_message_id_chk($ses_id,  $start, $scale)
+  sel_message_id_chk($ses_id,  $start, $scale, $mode)
   {
-    // $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+    if ($mode == "send")
+      $sql = "select * from message where send_id=:ses_id order by num desc limit {$start}, {$scale}";
+    else
+      $sql = "select * from message where rv_id=:ses_id order by num desc limit {$start}, {$scale}";
 
-    // if ($mode == "send")
-    //   $sql = "select * from message where send_id=:ses_id order by num desc limit {$start}, {$scale}";
-    // else
-    //   $sql = "select * from message where rv_id=:ses_id order by num desc limit {$start}, {$scale}";
-
-    // $stmt = $this->conn->prepare($sql);
-    // $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    // $stmt->bindParam(':ses_id', $ses_id);
-    // $stmt->execute();
-    // return  $stmt->fetchAll();
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':ses_id', $ses_id);
+    $stmt->execute();
+    return  $stmt->fetchAll();
   }
 
   public function
@@ -124,25 +109,13 @@ class Message
     $stmt->execute();
     return $stmt->fetch();
   }
-  // public function
-  // aaa($ses_id)
-  // {
-  //   $mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
-  //   $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION['ses_id'] : '';
-
-  //   if ($mode == "send") {
-  //     $sql = "select count(*) as cnt from `message` where send_id=:ses_id order by num desc";
-  //     $stmt = $this->conn->prepare($sql);
-  //     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  //     $stmt->bindParam(':ses_id', $ses_id);
-  //     $stmt->execute();
-  //     return $stmt->fetch();
-  //   } else
-  //     $sql = "select count(*) as cnt from `message` where rv_id=:ses_id order by num desc";
-  //   $stmt = $this->conn->prepare($sql);
-  //   $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  //   $stmt->bindParam(':ses_id', $ses_id);
-  //   $stmt->execute();
-  //   return $stmt->fetch();
-  // }
+  public function
+  del_message_num($num)
+  {
+    $sql = "delete from `message` where `num`=:num";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->bindParam(':num', $num);
+    $stmt->execute();
+  }
 }

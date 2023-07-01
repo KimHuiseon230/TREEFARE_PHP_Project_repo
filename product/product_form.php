@@ -113,10 +113,10 @@ $menu_code = "product";
 				</ul>
 				<ul class="buttons">
 					<li>
-						<button type="button" id="btn_input">완료</button>
+						<button class="btn btn-sm btn-primary" type="button" id="btn_input">완료</button>
 					</li>
 					<li>
-						<button type="button" id="btn_back">목록</button>
+						<button class="btn btn-sm btn-primary" type="button" id="btn_back">목록</button>
 					</li>
 				</ul>
 			</form>

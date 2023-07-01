@@ -52,7 +52,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
         $copied_file_name = $new_file_name . "." . $file_ext; // 2020_09_23_11_10_20_memo.sql
         $uploaded_file = $upload_dir . $copied_file_name; // ./data/2020_09_23_11_10_20_memo.sql 다 합친것
 
-        if ($upfile_size > 1000000) {
+        if ($upfile_size > 5000000) {
             echo ("
 				<script>
 				alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
@@ -100,6 +100,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $num = $_POST["num"];
     $page = $_POST["page"];
     $name = $_POST["name"];
+    $kind = $_POST["kind"];
     $price = $_POST["price"];
     $sale = $_POST["sale"];
     $content = $_POST["content"];
@@ -167,6 +168,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $arr = [
         'num' => $num,
         'name' => $name,
+        'kind' => $kind,
         'price' => $price,
         'sale' => $sale,
         'content' => $content,

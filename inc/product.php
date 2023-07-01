@@ -59,12 +59,13 @@ class Product
     // num update
     public function update_of_num($arr)
     {
-        $sql = "update `product` set name=:name, price=:price, sale=:sale, content=:content,  file_name=:upfile_name, 
+        $sql = "update `product` set name=:name, kind=:kind, price=:price, sale=:sale, content=:content,  file_name=:upfile_name, 
         file_type=:upfile_type, file_copied=:copied_file_name ";
         $sql .= " where num=:num";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':num', $arr['num']);
         $stmt->bindParam(':name', $arr['name']);
+        $stmt->bindParam(':kind', $arr['kind']);
         $stmt->bindParam(':price', $arr['price']);
         $stmt->bindParam(':sale', $arr['sale']);
         $stmt->bindParam(':content', $arr['content']);

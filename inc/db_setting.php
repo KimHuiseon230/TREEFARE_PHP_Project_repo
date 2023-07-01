@@ -11,10 +11,10 @@ create_table($conn, 'product');
 create_table($conn, 'cart');
 create_table($conn, 'notice');
 
-// insert_table_data($conn, 'member');
-// insert_table_data($conn, 'message');
-// insert_table_data($conn, 'image_board');
-// insert_table_data($conn, 'image_board_ripple');
+insert_table_data($conn, 'member');
+insert_table_data($conn, 'message');
+insert_table_data($conn, 'image_board');
+insert_table_data($conn, 'image_board_ripple');
 insert_table_data($conn, 'product');
 // insert_table_data($conn, 'cart');
 insert_table_data($conn, 'notice');

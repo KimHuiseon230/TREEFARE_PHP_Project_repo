@@ -149,9 +149,6 @@ class Member
 
     $sql = "select idx, id, name, email,  DATE_FORMAT(create_at,'%Y-%m-%d %H:%i') AS `create_at` from `member` {$where}  order by `idx` desc limit {$start}, {$limit}";
     $stmt = $this->conn->prepare($sql);
-    // if ($where != '') {
-    //   $stmt->bindParam(':sf', $paramArr['sf']);
-    // }
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
     return $stmt->fetchAll();
@@ -198,5 +195,13 @@ class Member
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
     return $stmt->fetch();
+  }
+  public function getData()
+  {
+    $sql = "select * from `member` order by idx asc";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+    return $stmt->fetchAll();
   }
 }

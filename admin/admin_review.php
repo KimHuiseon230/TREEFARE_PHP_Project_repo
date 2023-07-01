@@ -104,7 +104,6 @@ $reviewArr = $imageboard->list($page, $limit, $paramArr);
           $page_limit = 5;
           echo pagination($total, $limit, $page_limit, $page, $paramArr)
           ?>
-          <button type="button" class="btn btn-outline-primary" id="btn_excel">엑셀로 저장</button>
         </div>
       </main>
 

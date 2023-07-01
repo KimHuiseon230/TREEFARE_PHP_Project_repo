@@ -19,16 +19,6 @@ class Cart
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    // num  select(one)
-    public function find_of_num2($id)
-    {
-        $sql = "select * from cart where s_id=:id order by s_num desc";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->execute();
-        return $stmt->fetch();
-    }
     // num del
     public function del_of_num($s_num)
     {

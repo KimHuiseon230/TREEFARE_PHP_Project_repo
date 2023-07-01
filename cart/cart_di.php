@@ -24,27 +24,7 @@ if (!$id) {
 $mode = (isset($_POST['mode']) && $_POST['mode'] != '') ? $_POST['mode'] : '';
 $mode2 = (isset($_POST['mode2']) && $_POST['mode2'] != '') ? $_POST['mode2'] : '';
 
-switch ($mode2) {
-  case "insert2":
-    $arr = [
-      'id' => $id,
-      'name' => $_POST['name'],
-      'sale' => $_POST['sale'],
-      'count' => $_POST['count'],
-      'regist_day' => date("Y-m-d [H:i]"),
-      'file_name' => $_POST['file_name'],
-      'file_type' => $_POST['file_type'],
-      'file_copied' => $_POST['file_copied']
-    ];
-    $result = $cart->insert_of_num($arr);
 
-    echo "
-          <script>
-              location.href = '../pay/pay.php';
-          </script>
-       	";
-    break;
-}
 
 switch ($mode) {
   case "insert":
@@ -123,5 +103,27 @@ switch ($mode) {
 
       $calculate += $per_price * $per_count;
     }
+    break;
+}
+
+switch ($mode2) {
+  case "insert2":
+    $arr = [
+      'id' => $id,
+      'name' => $_POST['name'],
+      'sale' => $_POST['sale'],
+      'count' => $_POST['count'],
+      'regist_day' => date("Y-m-d [H:i]"),
+      'file_name' => $_POST['file_name'],
+      'file_type' => $_POST['file_type'],
+      'file_copied' => $_POST['file_copied']
+    ];
+    $result = $cart->insert_of_num($arr);
+
+    echo "
+          <script>
+              location.href = '../pay/pay.php';
+          </script>
+       	";
     break;
 }

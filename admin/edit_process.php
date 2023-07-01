@@ -63,5 +63,5 @@ $member->edit($arr);
 
 die("<script>
       alert('수정완료했습니다.');
-      self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/admin/admin.php'
+      self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/admin/admin_member.php'
     </script>");

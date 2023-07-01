@@ -2,6 +2,8 @@
 <html>
 
 <?php
+session_start();
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $_SESSION['ses_level'] : '';
 // 공통적으로 처리하는 부분
 $js_array = ['/image_board/js/board.js', '/image_board/js/board_form.php',  '/image_board/js/board_excel.js'];
 $title = "공지사항";
@@ -15,13 +17,17 @@ $menu_code = "notice";
 <body>
     <header>
         <?php
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+        if ($ses_level == 10) {
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+        } else {
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+        }
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
         $noticeboard = new NoticeBoard($conn);
-        create_table($conn, "notice");
+        //  create_table($conn, "notice");
 
         ?>
     </header>
@@ -29,7 +35,7 @@ $menu_code = "notice";
         <div id="board_box">
             <div id="board_box">
                 <h3>
-                    게시판 > 목록보기
+                    공지사항 > 목록보기
                 </h3>
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
@@ -94,13 +100,10 @@ $menu_code = "notice";
 
                 <ul class="buttons">
                     <li>
-                        <button class="btn btn-primary" onclick="location.href='notice_list.php'">목록</button>
-                    </li>
-                    <li>
                         <?php
                         if ($ses_level == 10) {
                         ?>
-                            <button class="btn btn-primary" onclick="location.href='notice_form.php'">글쓰기</button>
+                            <button class="btn btn-sm btn-primary" onclick="location.href='notice_form.php'">글쓰기</button>
                         <?php
                         }
                         ?>

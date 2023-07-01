@@ -105,7 +105,6 @@ $noticeArr = $noticeBoard->list($page, $limit, $paramArr);
           $page_limit = 5;
           echo pagination($total, $limit, $page_limit, $page, $paramArr)
           ?>
-          <button type="button" class="btn btn-outline-primary" id="btn_excel">엑셀로 저장</button>
           <button type="button" class="btn btn-outline-primary" onclick="location.href='../notice_board/notice_form.php'">공지사항 글쓰기</button>
         </div>
       </main>

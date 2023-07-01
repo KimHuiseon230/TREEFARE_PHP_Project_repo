@@ -73,19 +73,6 @@ class ImageBoard
         $stmt->execute();
         return $stmt->fetch();
     }
-    // num  select
-    public function Login_Comments($q_userid)
-    {
-        $sql = "select * from `member` where id =:q_userid";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':q_userid', $q_userid);
-        $stmt->fetch();
-        $result = $stmt->execute();
-        if (!$result) {
-            die('Error: ' . mysqli_error($this->conn));
-        }
-        return    $stmt->rowCount();
-    }
     public function find_test($q_ses_id)
     {
         $sql = "select * from `member` where id = :q_ses_id";

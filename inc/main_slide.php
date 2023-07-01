@@ -2,7 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
 $product = new Product($conn);
-$num = 18;
+$num = 10;
 $row = $product->find_of_num2($num);
 if ($row) {
   echo "
@@ -37,7 +37,7 @@ if ($row) {
 }
 ?>
 <?php
-$num = 18;
+$num = 16;
 $row = $product->find_of_num2($num);
 if ($row) {
   $name = $row['name'];
@@ -65,7 +65,7 @@ if ($row) {
 }
 ?>
 <?php
-$num = 18;
+$num = 22;
 $row = $product->find_of_num2($num);
 if ($row) {
   $name = $row['name'];
@@ -93,7 +93,7 @@ if ($row) {
 }
 ?>
 <?php
-$num = 18;
+$num = 28;
 $row = $product->find_of_num2($num);
 if ($row) {
   $name = $row['name'];

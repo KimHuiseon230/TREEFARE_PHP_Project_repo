@@ -30,7 +30,7 @@ $message = new Message($conn);
 ?>
 
 <!-- 메인부분 시작 -->
-<section>
+<section class="p-5" style="height: calc(100vh - 280px);">
   <div id="message_box">
     <h3 id="write_title">
       답변 쪽지 보내기

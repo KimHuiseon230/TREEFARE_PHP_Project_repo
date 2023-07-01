@@ -53,12 +53,17 @@ if ($ses_level == 10) {
         </thead>
         <?php
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/message_page_lib.php";
         include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
-        create_table($conn, "message");
+        ///create_table($conn, "message");
         include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/message.php";
         $message = new Message($conn);
-        $row = $message->sel_cnt_message_id_chk($ses_id);
+
+        if ($mode == "send") {
+          $row = $message->sel_cnt_message_id_chk($ses_id, $mode);
+        } else {
+          $row = $message->sel_cnt_message_id_chk($ses_id, $mode);
+        }
         // 전체 글 수
         $total_record = $row['cnt'];
         $scale = 10;
@@ -74,22 +79,13 @@ if ($ses_level == 10) {
         $number = $total_record - $start;
 
         if ($mode == "send")
-          $sql = "select * from message where send_id=:ses_id order by num desc limit {$start}, {$scale}";
+          $rows = $message->sel_message_id_chk($ses_id,  $start, $scale, $mode);
         else
-          $sql = "select * from message where rv_id=:ses_id order by num desc limit {$start}, {$scale}";
+          $rows = $message->sel_message_id_chk($ses_id,  $start, $scale, $mode);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $stmt->bindParam(':ses_id', $ses_id);
-        $stmt->execute();
-        $rows = $stmt->fetchAll();
-
-        // $rows = $message->sel_message_id_chk($ses_id,  $start, $scale);
-
-        // for ($i = $start; $i < $start + $scale && $i < $total_record; $i++) {
         foreach ($rows as $row) {
           // 하나의 레코드 가져오기
-          $num    = $row["num"];
+          $num         = $row["num"];
           $subject     = $row["subject"];
           $regist_day  = $row["regist_day"];
 
@@ -123,9 +119,9 @@ if ($ses_level == 10) {
           ?>
       </ul> <!-- page -->
       <ul class="buttons">
-        <li><button onclick="location.href='message_box.php?mode=rv'">수신 쪽지함</button></li>
-        <li><button onclick="location.href='message_box.php?mode=send'">송신 쪽지함</button></li>
-        <li><button onclick="location.href='message_form.php'">쪽지 보내기</button></li>
+        <li><button class="btn btn-sm btn-primary" onclick="location.href='message_box.php?mode=rv'">수신 쪽지함</button></li>
+        <li><button class="btn btn-sm btn-primary" onclick="location.href='message_box.php?mode=send'">송신 쪽지함</button></li>
+        <li><button class="btn btn-sm btn-primary" onclick="location.href='message_form.php'">쪽지 보내기</button></li>
       </ul>
     </div> <!-- message_box -->
 </section>

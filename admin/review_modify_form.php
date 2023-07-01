@@ -98,10 +98,10 @@ $menu_code = "board";
 				</ul>
 				<ul class="buttons">
 					<li>
-						<button type="button" id="check_input">완료</button>
+						<button class="btn btn-sm btn-primary" type="button" id="check_input">완료</button>
 					</li>
 					<li>
-						<button type="button" onclick="location.href='admin_review.php'">목록</button>
+						<button class="btn btn-sm btn-primary" type="button" onclick="location.href='admin_review.php'">목록</button>
 					</li>
 				</ul>
 			</form>

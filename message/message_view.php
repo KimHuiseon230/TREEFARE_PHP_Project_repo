@@ -32,11 +32,11 @@ $menu_code = "message";
 </header>
 <!-- 메인부분 시작 -->
 <section>
-	<div id="message_box">
+	<div class="p-5" id="message_box" style="height: calc(100vh - 280px);">
 		<h3 class="title">
 			<?php
 			//먼저 선언을 해야하는 파일들
-			$mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? (int)$_GET['mode'] : '';
+			$mode = (isset($_GET['mode']) && $_GET['mode'] != '') ? $_GET['mode'] : '';
 			$num = (isset($_GET['num']) && $_GET['num'] != '') ? (int)$_GET['num'] : '';
 			$row = $message->sel_message_num($num);
 
@@ -52,12 +52,11 @@ $menu_code = "message";
 
 			$record = $message->sel_name_member_id_chk($rv_id, $send_id);
 			$msg_name = isset($record["name"]) ? $record["name"] : '';
-
-			if ($mode == "send")
+			if ($mode == "send") {
 				echo "송신 쪽지함 > 내용보기";
-
-			else
+			} else {
 				echo "수신 쪽지함 > 내용보기";
+			}
 			?>
 		</h3>
 		<ul id="view_content">
@@ -72,7 +71,13 @@ $menu_code = "message";
 		<ul class="buttons">
 			<li><button type="button" class="btn btn-secondary" onclick="location.href='message_box.php?mode=rv'">수신 쪽지함</button></li>
 			<li><button type="button" class="btn btn-secondary" onclick="location.href='message_box.php?mode=send'">송신 쪽지함</button></li>
-			<li><button type="button" class="btn btn-secondary" onclick="location.href='message_response_form.php?num=<?= $num ?>'">답변 쪽지</button></li>
+			<?php
+			if ($_GET['mode'] == "rv") {
+			?>
+				<li><button type="button" class="btn btn-secondary" onclick="location.href='message_response_form.php?num=<?= $num ?>'">답변 쪽지</button></li>
+			<?php
+			}
+			?>
 			<li><button type="button" class="btn btn-secondary" onclick="location.href='message_delete.php?num=<?= $num ?>&mode=<?= $mode ?>'">삭제</button></li>
 		</ul>
 	</div> <!-- message_box -->

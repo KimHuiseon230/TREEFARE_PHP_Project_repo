@@ -57,7 +57,17 @@ $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != '') ? $_SESSION[
           </li>
           <li>
             <span class="col1">수신 아이디 : </span>
-            <span class="col2"><input name="rv_id" type="text"></span>
+            <?php
+            if ($ses_level == 10) {
+            ?>
+              <span class="col2"><input name="rv_id" type="text"></span>
+            <?php
+            } else {
+            ?>
+              <span class="col2"><input name="rv_id" type="text" value="admin01" readonly></span>
+            <?php
+            }
+            ?>
           </li>
           <li>
             <span class="col1">제목 : </span>

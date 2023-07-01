@@ -94,9 +94,6 @@ $menu_code = "product";
         <div class="products">
           <h2>our All products</h2>
           <?php
-
-
-
           // product 데이터 가져오기
           $rowArray = $product->page_limit($kind);
 

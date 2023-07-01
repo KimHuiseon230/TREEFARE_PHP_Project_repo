@@ -107,7 +107,7 @@ if ($ses_level == 10) {
 
       <div class="mt-3 d-flex justify-content-center gap-3">
         <button type="button" class="btn btn-primary w-50" id="btn_submit">완료</button>
-        <input type="reset" value="취소" class="btn btn-secondary w-50">
+        <input type="reset" value="초기화" class="btn btn-secondary w-50">
       </div>
 
     </form>

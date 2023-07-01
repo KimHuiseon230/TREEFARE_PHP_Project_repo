@@ -20,12 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     self.location.href = "./admin_review.php";
   });
 
-  // 엑셀로 저장
-  const btn_excel = document.querySelector("#btn_excel");
-  btn_excel.addEventListener("click", () => {
-    self.location.href = "./pg/member_to_excel.php";
-  });
-
   // 수정
   const btn_mem_edit_arr = document.querySelectorAll(".btn_mem_edit");
   btn_mem_edit_arr.forEach((value) => {
