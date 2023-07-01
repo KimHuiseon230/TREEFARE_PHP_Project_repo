@@ -26,8 +26,8 @@ $addr2 = (isset($_POST['addr2']) && $_POST['addr2'] != '') ? $_POST['addr2'] : '
 $level = (isset($_POST['level']) && $_POST['level'] != '' && is_numeric($_POST['level'])) ? $_POST['level'] : '';
 
 // 2. 디비연결, Member 클래스 로딩
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
 $member = new Member($conn);
 
 // 3. 구현할 부분
@@ -36,13 +36,13 @@ $photo = $old_photo;
 if (isset($_FILES['photo']) && $_FILES['photo']['name'] != '') {
   //기존 이미지가 있는지 없는지 파악
   if ($old_photo != '') {
-    unlink($_SERVER['DOCUMENT_ROOT'] . "/php_treefare/data/profile/" . $old_photo);
+    unlink($_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/data/profile/" . $old_photo);
   }
   //첨부된 이미지 파일 확장자 구하기
   $temp_arr = explode('.', $_FILES['photo']['name']);
   $ext = end($temp_arr);
   $photo = $id . "." . $ext;
-  copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/data/profile/" . $photo);
+  copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/data/profile/" . $photo);
 }
 
 // 연관배열
@@ -63,5 +63,5 @@ $member->edit($arr);
 
 die("<script>
       alert('수정완료했습니다.');
-      self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/admin/admin_member.php'
+      self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/admin/admin_member.php'
     </script>");

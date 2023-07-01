@@ -19,9 +19,9 @@ $menu_code = "treefare";
 
 //헤더부분 시작
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
 ?>
 <!-- 메인부분 시작 -->
@@ -116,5 +116,5 @@ if ($ses_level == 10) {
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

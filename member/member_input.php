@@ -18,12 +18,12 @@ $menu_code = "member";
 
 //헤더부분 시작
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
 create_table($conn, "member");
 ?>
 <!-- 다음 스크립트 로딩(우편번호 찾기) -->
@@ -111,5 +111,5 @@ create_table($conn, "member");
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

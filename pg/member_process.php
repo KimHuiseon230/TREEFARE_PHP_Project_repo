@@ -17,8 +17,8 @@ if ($mode == '') {
 }
 
 // 2. DB연결, Member Class 로딩
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
 $member = new Member($conn);
 
 // 3. 구현할부분
@@ -57,12 +57,12 @@ switch ($mode) {
         $temp_arr = explode('.', $_FILES['photo']['name']);
         $ext = end($temp_arr);
         $photo = $id . "." . $ext;
-        copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/data/profile/" . $photo);
+        copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/data/profile/" . $photo);
       }
       if ($password1 != $password2) {
         die("<script>
           alert('패스워드가 맞지 않습니다');
-          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/member/member_input.php'
+          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/member/member_input.php'
         </script>");
       }
 
@@ -81,7 +81,7 @@ switch ($mode) {
       $member->input($arr);
 
       die("<script>
-        self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/index.php'
+        self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/index.php'
         </script>");
     }
   case 'login': {
@@ -125,13 +125,13 @@ switch ($mode) {
 
         // 기존의 이미지가 있는지 없는지 파악
         if ($old_photo != '') {
-          unlink($_SERVER['DOCUMENT_ROOT'] . "/php_treefare/data/profile/" . $old_photo);
+          unlink($_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/data/profile/" . $old_photo);
         }
         // 첨부된 이미지 파일 확장자 구하기
         $temp_arr = explode('.', $_FILES['photo']['name']);
         $ext = end($temp_arr);
         $photo = $id . "." . $ext;
-        copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/data/profile/" . $photo);
+        copy($_FILES['photo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/data/profile/" . $photo);
       }
       session_start();
 
@@ -150,7 +150,7 @@ switch ($mode) {
       $_SESSION['ses_name'] = $name;
       die("<script>
           alert('수정완료했습니다.');
-          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/index.php'
+          self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/index.php'
         </script>");
       break;
     }

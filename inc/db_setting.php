@@ -1,7 +1,7 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table_data.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table_data.php";
 
 create_table($conn, 'member');
 create_table($conn, 'message');

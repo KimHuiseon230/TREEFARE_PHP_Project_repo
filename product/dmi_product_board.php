@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/product.php";
 $product = new Product($conn);
 session_start();
 if (isset($_SESSION["ses_id"])) $userid = $_SESSION["ses_id"];
@@ -92,7 +92,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] === "delete") {
     $product->insert_of_num($arr);
     echo ("
 	   <script>
-	    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/admin/admin_product.php';
+	    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/admin/admin_product.php';
 	   </script>
 	");
 } elseif (isset($_POST["mode"]) && $_POST["mode"] === "modify") {

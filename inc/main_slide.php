@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/product.php";
 $product = new Product($conn);
 $num = 10;
 $row = $product->find_of_num2($num);
@@ -22,7 +22,7 @@ if ($row) {
 ?>
   <div class="col ">
     <div class="card" style="padding: 5px;">
-      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/product_view.php?num=' . $num ?>">
+      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/product/product_view.php?num=' . $num ?>">
         <?php if (strpos($file_type_0, "image") !== false) echo "<img  class='hover:grow hover:shadow-lg' src='./product/data/$file_copied_0' 
                 width='$image_width' height='$image_height'><br>";
         else echo "<img src='./data/interior3.jpg' width='$image_width' height='$image_height'><br>" ?>
@@ -50,7 +50,7 @@ if ($row) {
 ?>
   <div class="col ">
     <div class="card" style="padding: 5px;">
-      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/product_view.php?num=' . $num ?>">
+      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/product/product_view.php?num=' . $num ?>">
         <?php if (strpos($file_type_0, "image") !== false) echo "<img  class='hover:grow hover:shadow-lg' src='./product/data/$file_copied_0' 
                 width='$image_width' height='$image_height'><br>";
         else echo "<img src='./data/interior3.jpg' width='$image_width' height='$image_height'><br>" ?>
@@ -78,7 +78,7 @@ if ($row) {
 ?>
   <div class="col ">
     <div class="card" style="padding: 5px;">
-      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/product_view.php?num=' . $num ?>">
+      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/product/product_view.php?num=' . $num ?>">
         <?php if (strpos($file_type_0, "image") !== false) echo "<img  class='hover:grow hover:shadow-lg' src='./product/data/$file_copied_0' 
                 width='$image_width' height='$image_height'><br>";
         else echo "<img src='./data/interior3.jpg' width='$image_width' height='$image_height'><br>" ?>
@@ -106,7 +106,7 @@ if ($row) {
 ?>
   <div class="col ">
     <div class="card" style="padding: 5px;">
-      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/product/product_view.php?num=' . $num ?>">
+      <a class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/product/product_view.php?num=' . $num ?>">
         <?php if (strpos($file_type_0, "image") !== false) echo "<img  class='hover:grow hover:shadow-lg' src='./product/data/$file_copied_0' 
                 width='$image_width' height='$image_height'><br>";
         else echo "<img src='./data/interior3.jpg' width='$image_width' height='$image_height'><br>" ?>

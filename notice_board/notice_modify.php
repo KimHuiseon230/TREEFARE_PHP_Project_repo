@@ -12,8 +12,8 @@ if ($num == '') {
 
 $subject = (isset($_POST["subject"]) && $_POST["subject"] != '') ? $_POST["subject"] : '';
 $content = (isset($_POST["content"]) && $_POST["content"] != '') ? $_POST["content"] : '';
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/notice_board.php";
 $noticeboard = new NoticeBoard($conn);
 
 // 연관배열

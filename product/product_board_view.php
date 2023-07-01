@@ -7,16 +7,16 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 <html>
 
 <head>
-	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/board.css?v=<?= date('Ymdhis') ?>">
+	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/product/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
 	<header>
 		<?php
 		if ($ses_level == 10) {
-			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 		} else {
-			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 		}
 		?>
 	</header>
@@ -33,7 +33,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 				관리자 상품페이지
 			</h3>
 			<?php
-			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
 			$num = $_GET["num"];
 			$page = (isset($_GET["page"]) && $_GET["page"] != '') ? $_GET["page"] : '';
 
@@ -117,7 +117,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 			</div> <!-- board_box -->
 	</section>
 	<footer>
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"; ?>
 	</footer>
 </body>
 

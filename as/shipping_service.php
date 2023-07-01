@@ -24,9 +24,9 @@ $menu_code = "treefare";
 
 //헤더부분 시작
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
 ?>
 <!-- 메인부분 시작 -->
@@ -80,20 +80,20 @@ if ($ses_level == 10) {
   <div class="container justify-content-around mt-5 mb-5">
     <div class="row">
       <div class="card m-3 " style="width: 23rem;">
-        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/main_ad_img1.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/images/main_ad_img1.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <p>￦<strong class="card-text text-lg-center text-blue" id="strong_card-text">&nbsp;3,000~</strong>
           </p>
         </div>
       </div>
       <div class="card m-3 " style="width: 23rem;">
-        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/main_ad_img2.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/images/main_ad_img2.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <p>￦<strong class="card-text text-lg-center text-blue" id="strong_card-text">&nbsp;9,000~</strong>
         </div>
       </div>
       <div class="card m-3 " style="width: 23rem;">
-        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/main_ad_img3.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
+        <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/images/main_ad_img3.jpg' ?>" class="card-img-top" alt="..." style="margin-top: 15px;">
         <div class="card-body">
           <p>￦<strong class="card-text text-lg-center text-blue" id="strong_card-text">&nbsp;29,000~</strong>
         </div>
@@ -171,5 +171,5 @@ if ($ses_level == 10) {
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

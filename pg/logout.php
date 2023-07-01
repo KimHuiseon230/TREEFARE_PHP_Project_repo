@@ -8,6 +8,6 @@ session_start();
 session_destroy();
 die("
   <script>
-    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/php_treefare/index.php';
+    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/TREEFARE_PHP_Project/index.php';
   </script>
 ");

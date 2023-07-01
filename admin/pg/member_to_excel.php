@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
 $member = new Member($conn);
 header("Content-type: application/vnd.ms-excel; charset=utf-8");
 //filename 저장 엑셀 파일명
@@ -24,7 +24,7 @@ $EXCEL_FILE = "
 
 $rowArray = $member->getData();
 foreach ($rowArray as $row) {
-  $EXCEL_FILE .= "
+   $EXCEL_FILE .= "
     <tr>
        <td>{$row['idx']}</td>
        <td>{$row['id']}</td>

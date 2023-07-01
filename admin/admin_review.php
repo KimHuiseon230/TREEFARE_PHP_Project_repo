@@ -2,9 +2,9 @@
 <html lang="en">
 
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php"; // 페이징 처리
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/image_board.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/page_lib.php"; // 페이징 처리
 $imageboard = new ImageBoard($conn);
 
 // 공통적으로 처리하는 부분
@@ -36,8 +36,8 @@ $reviewArr = $imageboard->list($page, $limit, $paramArr);
 <body>
   <header>
     <?php
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/slide.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/slide.php";
     ?>
   </header>
 
@@ -110,7 +110,7 @@ $reviewArr = $imageboard->list($page, $limit, $paramArr);
     </div>
   </section>
   <footer>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php" ?>
   </footer>
 </body>
 

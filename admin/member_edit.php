@@ -29,17 +29,17 @@ $title = "관리자회원수정";
 $menu_code = "admin_member";
 
 // 회원정보 가져오기 (디비연결, Member 클래스 로딩)
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
 $member = new Member($conn);
 $mem = $member->getInfoFromIdx($idx);
 
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/slide.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/slide.php";
 ?>
 <!-- 우편번호 찾기 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -134,5 +134,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/slide.php";
 <!-- 메인부분 끝 -->
 <?php
 // 푸터
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

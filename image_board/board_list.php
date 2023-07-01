@@ -14,21 +14,21 @@ $menu_code = "board";
 ?>
 
 <head>
-    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/image_board/css/board.css?v=<?= date('Ymdhis') ?>">
+    <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/image_board/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
     <header>
         <?php
         if ($ses_level == 10) {
-            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
         } else {
-            include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+            include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
         }
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/page_lib.php";
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/image_board.php";;
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/page_lib.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/image_board.php";;
         $imageboard = new ImageBoard($conn);
         create_table($conn, "image_board");
         create_table($conn, "image_board_ripple");
@@ -116,7 +116,7 @@ $menu_code = "board";
         </div> <!-- board_box -->
     </section>
     <footer>
-        <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"; ?>
     </footer>
 </body>
 

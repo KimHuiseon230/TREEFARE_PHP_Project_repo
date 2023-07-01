@@ -9,9 +9,9 @@ $title = "회원가입조건";
 $menu_code = "member";
 
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
 ?>
 
@@ -229,5 +229,5 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 <!-- 메인 종료 -->
 
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

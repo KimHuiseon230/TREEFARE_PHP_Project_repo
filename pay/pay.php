@@ -7,8 +7,8 @@ $js_array = ['/pay/js/main_slide2.js', '/js/pay.js'];
 ?>
 
 <head>
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/pay/css/pay.css?v=<?= date('Ymdhis') ?>">
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/pay/css/card_slide.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/pay/css/pay.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/pay/css/card_slide.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
@@ -16,14 +16,14 @@ $js_array = ['/pay/js/main_slide2.js', '/js/pay.js'];
 
     <?php
     if ($ses_level == 10) {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
     } else {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
     }
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/cart.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/cart.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
     create_table($conn, "cart");
     $cart = new Cart($conn);
     $member = new Member($conn);
@@ -172,22 +172,22 @@ $js_array = ['/pay/js/main_slide2.js', '/js/pay.js'];
               <div class="image-slider">
                 <div class="slide-wrapper">
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card1.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card1.png"  ' ?>" alt="1">
                   </div>
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card2.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card2.png"  ' ?>" alt="1">
                   </div>
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card3.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card3.png"  ' ?>" alt="1">
                   </div>
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card4.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card4.png"  ' ?>" alt="1">
                   </div>
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card5.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card5.png"  ' ?>" alt="1">
                   </div>
                   <div class="slide">
-                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pay/img/card6.png"  ' ?>" alt="1">
+                    <img src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pay/img/card6.png"  ' ?>" alt="1">
                   </div>
                 </div>
               </div>
@@ -247,7 +247,7 @@ $js_array = ['/pay/js/main_slide2.js', '/js/pay.js'];
       <!-- 메인부분 종료 -->
   </section>
   <footer>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php" ?>
   </footer>
 </body>
 

@@ -11,20 +11,20 @@ $menu_code = "product";
 <html>
 
 <head>
-	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/board.css?v=<?= date('Ymdhis') ?>">
+	<link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/product/css/board.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
 	<header>
 		<?php
 		if ($ses_level == 10) {
-			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 		} else {
-			include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+			include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 		}
-		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-		include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
-		include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+		include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+		include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/product.php";
+		include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
 		create_table($conn, "product");
 		$product = new Product($conn);
 		?>
@@ -124,7 +124,7 @@ $menu_code = "product";
 	</section>
 	<!-- 푸터부분 시작 -->
 	<footer>
-		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
+		<?php include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php" ?>
 	</footer>
 </body>
 

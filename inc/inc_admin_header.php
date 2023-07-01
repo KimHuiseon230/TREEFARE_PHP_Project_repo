@@ -31,19 +31,19 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
   <!-- Core theme CSS (includes Bootstrap)-->
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/css/footer.css?v=<?= date('Ymdhis') ?>">
-  <!-- <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/css/styles.css?v=<?= date('Ymdhis') ?>"> -->
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/css/footer.css?v=<?= date('Ymdhis') ?>">
+  <!-- <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/css/styles.css?v=<?= date('Ymdhis') ?>"> -->
   <!-- 외부스크립트 -->
   <?php
   if (isset($js_array)) {
     foreach ($js_array as $value) {
-      print "<script src='http://" . $_SERVER['HTTP_HOST'] . "/php_treefare/$value?v=" . date('Ymdhis') . "' defer></script>" . PHP_EOL;
+      print "<script src='http://" . $_SERVER['HTTP_HOST'] . "/TREEFARE_PHP_Project/$value?v=" . date('Ymdhis') . "' defer></script>" . PHP_EOL;
     }
   }
 
   if (isset($css_array)) {
     foreach ($css_array as $value) {
-      print "<link rel=\"stylesheet\" href=\"http://{$_SERVER['HTTP_HOST']}/php_treefare/{$value}?v=" . date('Ymdhis') . "\">";
+      print "<link rel=\"stylesheet\" href=\"http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/{$value}?v=" . date('Ymdhis') . "\">";
     }
   }
   ?>
@@ -56,7 +56,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a style="position: fixed; left: 43%;" class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>"><img id="imglog" style="width: 250px; height: auto; ;" src="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/images/log/003.png' ?>" alt=""></a>
+      <a style="position: fixed; left: 43%;" class="navbar-brand" href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/index.php' ?>" class="nav-link <?= ($menu_code == 'home') ? 'active' : '' ?>"><img id="imglog" style="width: 250px; height: auto; ;" src="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/images/log/003.png' ?>" alt=""></a>
 
       <div class="navbar navbar-expand-lg " id="mainNav">
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -74,12 +74,12 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
                     ↓
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/admin/admin_member.php' ?>" class="nav-link  <?= ($menu_code == 'admin_member') ? 'active' : '' ?>">회원관리</a></li>
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/admin/admin_product.php' ?>" class="nav-link  <?= ($menu_code == 'admin_product') ? 'active' : '' ?>">상품관리</a></li>
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/admin/admin_review.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">리뷰게시판관리</a></li>
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/admin/admin_notice_board.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">공지사항관리</a></li>
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/message/message_box.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">1:1문의사항</a></li>
-                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/php_treefare/pg/logout.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그아웃</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/admin/admin_member.php' ?>" class="nav-link  <?= ($menu_code == 'admin_member') ? 'active' : '' ?>">회원관리</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/admin/admin_product.php' ?>" class="nav-link  <?= ($menu_code == 'admin_product') ? 'active' : '' ?>">상품관리</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/admin/admin_review.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">리뷰게시판관리</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/admin/admin_notice_board.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">공지사항관리</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/message/message_box.php' ?>" class="nav-link  <?= ($menu_code == '') ? 'active' : '' ?>">1:1문의사항</a></li>
+                    <li class="dropdown-item"><a href="http://<?= $_SERVER['HTTP_HOST'] . '/TREEFARE_PHP_Project/pg/logout.php' ?>" class="nav-link <?= ($menu_code == 'login') ? 'active' : '' ?>">로그아웃</a></li>
                   </ul>
                 </div>
               <?php  } ?>
@@ -96,7 +96,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
       </div>
       <div class="offcanvas-body row-cols-1">
         <?php
-        // include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/cart/cart_list.php";
+        // include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/cart/cart_list.php";
         ?>
       </div>
     </div>

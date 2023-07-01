@@ -7,7 +7,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/cart/css/cart_list.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/cart/css/cart_list.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
@@ -16,13 +16,13 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
     $js_array = ['js/cart_list.js'];
 
     if ($ses_level == 10) {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
     } else {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
     }
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/cart.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+    include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/cart.php";
     $cart = new Cart($conn);
     create_table($conn, "cart");
     ?>
@@ -126,7 +126,7 @@ $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != '') ? $
     </div>
   </section>
   <footer>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php" ?>
   </footer>
 </body>
 

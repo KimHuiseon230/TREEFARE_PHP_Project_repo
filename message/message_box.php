@@ -7,7 +7,7 @@ if ($ses_id == '') {
   die("
   <script>
     alert('로그인 후 접근이 가능한 페이지 입니다.')
-    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/php_treefare/index.php';
+    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/TREEFARE_PHP_Project/index.php';
   </script>");
 }
 //공통적으로 처리하는 부분
@@ -17,9 +17,9 @@ $menu_code = "message";
 
 //헤더부분 시작
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
 ?>
 <!-- 메인부분 시작 -->
@@ -52,11 +52,11 @@ if ($ses_level == 10) {
           </tr>
         </thead>
         <?php
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/message_page_lib.php";
-        include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/create_table.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/message_page_lib.php";
+        include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/create_table.php";
         ///create_table($conn, "message");
-        include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/message.php";
+        include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/message.php";
         $message = new Message($conn);
 
         if ($mode == "send") {
@@ -129,5 +129,5 @@ if ($ses_level == 10) {
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

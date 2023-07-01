@@ -45,7 +45,7 @@ class Message
     }
     echo "
     <script>
-    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/php_treefare/message/message_box.php?mode=send'</script>
+    self.location.href = 'http://{$_SERVER['HTTP_HOST']}/TREEFARE_PHP_Project/message/message_box.php?mode=send'</script>
     ";
   }
 

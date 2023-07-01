@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/notice_board.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/notice_board.php";
 $noticeboard = new NoticeBoard($conn);
 $num = (isset($_GET["num"]) && $_GET["num"] != '') ? $_GET["num"] : '';
 $page = (isset($_GET["page"]) && $_GET["page"] != '') ? $_GET["page"] : '';

@@ -8,7 +8,7 @@ if ($ses_id == '') {
   die("
   <script>
     alert('로그인 후 접근이 가능한 페이지 입니다.')
-    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/php_treefare/index.php';
+    self.location.href = 'http://" . $_SERVER['HTTP_HOST'] . "/TREEFARE_PHP_Project/index.php';
   </script>");
 }
 // 공통적으로 처리하는 부분
@@ -17,15 +17,15 @@ $title = "회원수정";
 $menu_code = "member";
 
 // 회원정보 가져오기(DB연결, Member Class 로딩)
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/member.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/member.php";
 $member = new Member($conn);
 $memArr = $member->getInfo($ses_id);
 //헤더부분 시작
 if ($ses_level == 10) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
 }
 ?>
 <!-- 다음 스크립트 로딩(우편번호 찾기) -->
@@ -117,5 +117,5 @@ if ($ses_level == 10) {
 
 <!-- 푸터부분 시작 -->
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php"
+include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php"
 ?>

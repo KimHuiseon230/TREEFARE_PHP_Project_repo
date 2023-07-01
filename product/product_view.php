@@ -9,19 +9,19 @@ $js_array = ['js/product_view.js'];
 ?>
 
 <head>
-  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/php_treefare/product/css/product_view.css?v=<?= date('Ymdhis') ?>">
+  <link rel="stylesheet" href="http://<?= $_SERVER['HTTP_HOST'] ?>/TREEFARE_PHP_Project/product/css/product_view.css?v=<?= date('Ymdhis') ?>">
 </head>
 
 <body>
   <header>
     <?php
     if ($ses_level == 10) {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_admin_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_admin_header.php";
     } else {
-      include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_header.php";
+      include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_header.php";
     }
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/db_connect.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/product.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/db_connect.php";
+    include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/product.php";
     $product = new Product($conn);
     ?>
   </header>
@@ -220,10 +220,10 @@ $js_array = ['js/product_view.js'];
       </div>
     </div>
     </div>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/product/product_detail.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/product/product_detail.php"; ?>
   </section>
   <footer>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/php_treefare/inc/inc_footer.php" ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/TREEFARE_PHP_Project/inc/inc_footer.php" ?>
   </footer>
 </body>
 
